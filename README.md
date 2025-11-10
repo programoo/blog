@@ -15,3 +15,22 @@ production:
   host: <%= ENV.fetch("DB_HOST") { "db" } %>   # "db" is the Docker service name
   port: <%= ENV.fetch("DB_PORT") { 5432 } %>
   database: myapp_production
+
+
+
+  ssh-keygen -t ed25519 -C "prakarnwongsanit@gmail.com"
+
+
+docker build -t kamago .
+docker images
+  
+docker tag kamago pnwt9565/kamago:latest
+
+docker commit ea03be8b8d28 postgres:latest
+docker commit 50f1a3509831 blog-web:latest
+
+docker tag blog-web:latest pnwt9565/blog-web:latest
+docker push pnwt9565/blog-web:latest
+
+
+docker pull pnwt9565/blog-web:latest
