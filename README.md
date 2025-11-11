@@ -42,3 +42,6 @@ docker compose build
 docker compose up
 
 docker run -it --rm blog-web /bin/bash
+
+
+docker run --name my-nginx -p 80:80 -d nginx
