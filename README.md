@@ -34,3 +34,5 @@ docker push pnwt9565/blog-web:latest
 
 
 docker pull pnwt9565/blog-web:latest
+
+docker compose build
