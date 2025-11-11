@@ -32,7 +32,13 @@ docker commit 50f1a3509831 blog-web:latest
 docker tag blog-web:latest pnwt9565/blog-web:latest
 docker push pnwt9565/blog-web:latest
 
+docker run -it --rm blog-web /bin/bash
+
 
 docker pull pnwt9565/blog-web:latest
 
 docker compose build
+
+docker compose up
+
+docker run -it --rm blog-web /bin/bash

@@ -91,4 +91,10 @@ Rails.application.configure do
   config.hosts << "localhost"
   config.hosts << "127.0.0.1"
   config.hosts << "localhost:3000"
+  
+  # in config/environments/production.rb
+  config.action_controller.default_url_options = { protocol: 'https' }
+  config.action_dispatch.trusted_proxies = ['127.0.0.1', '::1']
+
+  config.hosts.clear
 end

@@ -2,7 +2,7 @@ services:
   web:
     build: .
     environment:
-      RAILS_ENV: production
+      RAILS_ENV: development
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres!08
       DB_HOST: 157.230.43.129
