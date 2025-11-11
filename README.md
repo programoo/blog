@@ -32,6 +32,9 @@ docker commit 50f1a3509831 blog-web:latest
 docker tag blog-web:latest pnwt9565/blog-web:latest
 docker push pnwt9565/blog-web:latest
 
+docker tag nginx:latest pnwt9565/nginx:latest
+docker push pnwt9565/nginx:latest
+
 docker run -it --rm blog-web /bin/bash
 
 
@@ -45,3 +48,8 @@ docker run -it --rm blog-web /bin/bash
 
 
 docker run --name my-nginx -p 80:80 -d nginx
+
+
+
+## production
+docker compose --env-file .env up --build
