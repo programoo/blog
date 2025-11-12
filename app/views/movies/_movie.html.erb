@@ -1,0 +1,16 @@
+<div id="<%= dom_id movie %>">
+  <p>
+    <strong>Title:</strong>
+    <%= movie.title %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= movie.description %>
+  </p>
+  <p>
+    <strong>Images:</strong><br>
+    <% movie.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [300, 300]) %><br>
+    <% end %>
+  </p>
+</div>
