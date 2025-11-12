@@ -57,21 +57,13 @@
           <p class="text-gray-300 max-w-xl mx-auto">Read the latest reviews from our critics and movie enthusiasts.</p>
         </div>
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-gray-800 rounded-lg p-6 shadow-md">
-            <h4 class="text-2xl font-bold mb-2">Movie Review 1</h4>
-            <p class="text-gray-300 mb-2">An exciting journey through an imaginative storyline with stellar performances.</p>
-            <span class="text-red-500 font-bold">Rating: 9/10</span>
-          </div>
-          <div class="bg-gray-800 rounded-lg p-6 shadow-md">
-            <h4 class="text-2xl font-bold mb-2">Movie Review 2</h4>
-            <p class="text-gray-300 mb-2">A heartfelt drama with impressive cinematography and compelling characters.</p>
-            <span class="text-red-500 font-bold">Rating: 8/10</span>
-          </div>
-          <div class="bg-gray-800 rounded-lg p-6 shadow-md">
-            <h4 class="text-2xl font-bold mb-2">Movie Review 3</h4>
-            <p class="text-gray-300 mb-2">An action-packed adventure that keeps you on the edge of your seat.</p>
-            <span class="text-red-500 font-bold">Rating: 9.5/10</span>
-          </div>
+          <% @comments.each do | comment | %>
+            <div class="bg-gray-800 rounded-lg p-6 shadow-md">
+              <h4 class="text-2xl font-bold mb-2"><%= comment.movie.title %></h4>
+              <p class="text-gray-300 mb-2"><%= comment.content %></p>
+              <span class="text-red-500 font-bold"><i class="bi bi-chat"></i> <%= comment.movie.comments.size %></span>
+            </div>
+          <% end %>
         </div>
       </section>
       <!-- Subscribe Section -->
