@@ -15,74 +15,88 @@
           <ul class="flex space-x-6">
             <li><a href="#reviews" class="hover:text-red-500">รีวิวภาพยนตร์</a></li>
             <li><a href="#top-movies" class="hover:text-red-500">ภาพยนตร์ยอดเยี่ยม</a></li>
-            <li><%= link_to "เข้าสู่ระบบ", new_session_path(:user), class: "hover:text-red-500" %>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <!-- Hero Section -->
-    <section class="bg-gray-900 py-20">
-      <div class="container mx-auto text-center">
-        <h2 class="text-5xl font-bold mb-4">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
-        <p class="text-gray-300 mb-8 text-lg">คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า</p>
-        <a href="<%= new_registration_path(:user) %>" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full">สมัครเลย</a>
-      </div>
-    </section>
-    <!-- Top Movies Section -->
-    <section id="top-movies" class="py-20 bg-gray-800">
-      <div class="container mx-auto text-center mb-12">
-        <h3 class="text-4xl font-bold mb-6">ภาพยนตร์ยอดนิยมแห่งปี</h3>
-        <p class="text-gray-300 max-w-xl mx-auto">ชมรายชื่อภาพยนตร์ที่ได้คะแนนสูงสุดจากทั้งรีวิวของผู้เชี่ยวชาญและเสียงโหวตจากชุมชนของเรา.</p>
-      </div>
-      <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        <% @movies.first(6).each do |movie| %>
-          <%= link_to movie_path(movie) ,target: "_blank", style: "text-decoration: none; color: inherit;" do %>
-            <div class="bg-gray-700 rounded-lg overflow-hidden shadow-lg">
-              <img
+            <% if user_signed_in? %>
+              <li>
+                <%= current_user.email %>
+              </li>
+              <li>
+                <%= link_to 'ออกจากระบบ', destroy_user_session_path, data: { turbo_method: :delete } %>
+              </li>
+            <% else %>
+              <li><%= link_to "เข้าสู่ระบบ", new_session_path(:user), class: "hover:text-red-500" %>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <section class="bg-gray-900 py-20">
+        <div class="container mx-auto text-center">
+          <% if !user_signed_in? %>
+            <h2 class="text-5xl font-bold mb-4">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
+          <% else %>
+            <h2 class="text-5xl font-bold mb-4">สวัสดี <%= current_user.email %> </h2>
+          <% end %>
+          <p class="text-gray-300 mb-8 text-lg">คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า</p>
+          <% if !user_signed_in? %>
+            <a href="<%= new_registration_path(:user) %>" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full">สมัครเลย</a>
+          <% end %>
+        </div>
+      </section>
+      <!-- Top Movies Section -->
+      <section id="top-movies" class="py-20 bg-gray-800">
+        <div class="container mx-auto text-center mb-12">
+          <h3 class="text-4xl font-bold mb-6">ภาพยนตร์ยอดนิยมแห่งปี</h3>
+          <p class="text-gray-300 max-w-xl mx-auto">ชมรายชื่อภาพยนตร์ที่ได้คะแนนสูงสุดจากทั้งรีวิวของผู้เชี่ยวชาญและเสียงโหวตจากชุมชนของเรา.</p>
+        </div>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <% @movies.first(6).each do |movie| %>
+            <%= link_to movie_path(movie) ,target: "_blank", style: "text-decoration: none; color: inherit;" do %>
+              <div class="bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+                <img
                src="<%= Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true) %>" alt="Movie 1" 
                class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
-                <div class="p-6">
-                  <h4 class="text-xl font-bold mb-2"><%= movie.title %></h4>
-                  <p class="text-gray-300"><%= movie.description[0..100] + "..." %></p>
+                  <div class="p-6">
+                    <h4 class="text-xl font-bold mb-2"><%= movie.title %></h4>
+                    <p class="text-gray-300"><%= movie.description[0..100] + "..." %></p>
+                  </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-      </section>
-      <!-- Latest Reviews Section -->
-      <section id="reviews" class="py-20 bg-gray-900">
-        <div class="container mx-auto text-center mb-12">
-          <h3 class="text-4xl font-bold mb-6">รีวิวล่าสุด</h3>
-          <p class="text-gray-300 max-w-xl mx-auto">อ่านรีวิวล่าสุดจากนักวิจารณ์และคนรักหนังของเรา</p>
-        </div>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <% @comments.each do | comment | %>
-            <%= link_to movie_path(comment.movie) ,target: "_blank", style: "text-decoration: none; color: inherit;" do %>
-              <div class="bg-gray-800 rounded-lg p-6 shadow-md">
-                <h4 class="text-2xl font-bold mb-2"><%= comment.movie.title %></h4>
-                <p class="text-gray-300 mb-2"><%= comment.content %></p>
-                <span class="text-red-500 font-bold"><i class="bi bi-chat"></i> <%= comment.movie.comments.size %> <i class="bi bi-clock me-1 ml-3"></i>  <%= time_ago_in_words(comment.created_at) %></span>
-              </div>
+          </div>
+        </section>
+        <!-- Latest Reviews Section -->
+        <section id="reviews" class="py-20 bg-gray-900">
+          <div class="container mx-auto text-center mb-12">
+            <h3 class="text-4xl font-bold mb-6">รีวิวล่าสุด</h3>
+            <p class="text-gray-300 max-w-xl mx-auto">อ่านรีวิวล่าสุดจากนักวิจารณ์และคนรักหนังของเรา</p>
+          </div>
+          <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <% @comments.each do | comment | %>
+              <%= link_to movie_path(comment.movie) ,target: "_blank", style: "text-decoration: none; color: inherit;" do %>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-md">
+                  <h4 class="text-2xl font-bold mb-2"><%= comment.movie.title %></h4>
+                  <p class="text-gray-300 mb-2"><%= comment.content %></p>
+                  <span class="text-red-500 font-bold"><i class="bi bi-chat"></i> <%= comment.movie.comments.size %> <i class="bi bi-clock me-1 ml-3"></i>  <%= time_ago_in_words(comment.created_at) %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-      </section>
-      <!-- Subscribe Section -->
-      <section id="subscribe" class="py-20 bg-gray-800">
-        <div class="container mx-auto text-center">
-          <h3 class="text-4xl font-bold mb-6">Subscribe for Weekly Updates</h3>
-          <p class="text-gray-300 mb-6">Get notified about the latest reviews and trending movies directly in your inbox.</p>
-          <form class="max-w-md mx-auto flex flex-col md:flex-row gap-4">
-            <input type="email" placeholder="Enter your email" class="p-3 rounded-md flex-1 text-black" required>
-            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-3 rounded-md">Subscribe</button>
-          </form>
-        </div>
-      </section>
-      <!-- Footer -->
-      <footer class="bg-gray-900 py-6 text-center text-gray-400">
-        &copy; 2025 PopcornThai. All rights reserved.
-      </footer>
-    </body>
-  </html>
+          </div>
+        </section>
+        <!-- Subscribe Section -->
+        <section id="subscribe" class="py-20 bg-gray-800">
+          <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6">Subscribe for Weekly Updates</h3>
+            <p class="text-gray-300 mb-6">Get notified about the latest reviews and trending movies directly in your inbox.</p>
+            <form class="max-w-md mx-auto flex flex-col md:flex-row gap-4">
+              <input type="email" placeholder="Enter your email" class="p-3 rounded-md flex-1 text-black" required>
+              <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-3 rounded-md">Subscribe</button>
+            </form>
+          </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-gray-900 py-6 text-center text-gray-400">
+          &copy; 2025 PopcornThai. All rights reserved.
+        </footer>
+      </body>
+    </html>
