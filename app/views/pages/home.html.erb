@@ -10,11 +10,11 @@
     <!-- Header -->
     <header class="bg-gray-800 p-6">
       <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-3xl font-bold text-red-500">MovieVerse</h1>
+        <h1 class="text-3xl font-bold text-red-500">PopcornThai</h1>
         <nav>
           <ul class="flex space-x-6">
-            <li><a href="#reviews" class="hover:text-red-500">Reviews</a></li>
-            <li><a href="#top-movies" class="hover:text-red-500">Top Movies</a></li>
+            <li><a href="#reviews" class="hover:text-red-500">รีวิวภาพยนตร์</a></li>
+            <li><a href="#top-movies" class="hover:text-red-500">ภาพยนตร์ยอดเยี่ยม</a></li>
             <li><a href="#subscribe" class="hover:text-red-500">Subscribe</a></li>
           </ul>
         </nav>
@@ -24,15 +24,15 @@
     <section class="bg-gray-900 py-20">
       <div class="container mx-auto text-center">
         <h2 class="text-5xl font-bold mb-4">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
-        <p class="text-gray-300 mb-8 text-lg">Your guide to the latest blockbusters, hidden gems, and timeless classics.</p>
+        <p class="text-gray-300 mb-8 text-lg">คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า</p>
         <a href="#subscribe" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full">Join Now</a>
       </div>
     </section>
     <!-- Top Movies Section -->
     <section id="top-movies" class="py-20 bg-gray-800">
       <div class="container mx-auto text-center mb-12">
-        <h3 class="text-4xl font-bold mb-6">Top Rated Movies</h3>
-        <p class="text-gray-300 max-w-xl mx-auto">Check out the highest-rated movies according to our expert reviews and community votes.</p>
+        <h3 class="text-4xl font-bold mb-6">ภาพยนตร์ยอดนิยมแห่งปี</h3>
+        <p class="text-gray-300 max-w-xl mx-auto">ชมรายชื่อภาพยนตร์ที่ได้คะแนนสูงสุดจากทั้งรีวิวของผู้เชี่ยวชาญและเสียงโหวตจากชุมชนของเรา.</p>
       </div>
       <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <% @movies.first(6).each do |movie| %>
@@ -53,8 +53,8 @@
       <!-- Latest Reviews Section -->
       <section id="reviews" class="py-20 bg-gray-900">
         <div class="container mx-auto text-center mb-12">
-          <h3 class="text-4xl font-bold mb-6">Latest Reviews</h3>
-          <p class="text-gray-300 max-w-xl mx-auto">Read the latest reviews from our critics and movie enthusiasts.</p>
+          <h3 class="text-4xl font-bold mb-6">รีวิวล่าสุด</h3>
+          <p class="text-gray-300 max-w-xl mx-auto">อ่านรีวิวล่าสุดจากนักวิจารณ์และคนรักหนังของเรา</p>
         </div>
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <% @comments.each do | comment | %>
@@ -81,7 +81,7 @@
       </section>
       <!-- Footer -->
       <footer class="bg-gray-900 py-6 text-center text-gray-400">
-        &copy; 2025 MovieVerse. All rights reserved.
+        &copy; 2025 PopcornThai. All rights reserved.
       </footer>
     </body>
   </html>
