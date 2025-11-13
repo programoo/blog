@@ -5,13 +5,15 @@
   <div class="row">
     <% @movies.each do |movie| %>
       <div class="col-md-4 mb-3">
-        <div class="card" style="width: 18rem;">
-          <img src="<%= Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true) %>" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+        <%= link_to movie_path(movie) ,target: "_blank", style: "text-decoration: none; color: inherit;" do %>
+          <div class="card" style="width: 18rem;">
+            <img src="<%= Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true) %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= movie.title %></h5>
+              <p class="card-text"><%= movie.description[0..50] %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     <% end %>
     <!-- Add more cards, they will wrap to next line automatically -->
