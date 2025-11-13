@@ -1,19 +1,31 @@
-<% if user_signed_in? %>
-  Hello, <%= current_user.email %>!
-  <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete } %>
-  <p style="color: green"><%= notice %></p>
-  <% content_for :title, "Movies" %>
-  <h1>Movies</h1>
-  <div id="movies">
+<%= link_to "New movie", new_movie_path %>
+<div class="container">
+  <div class="row">
     <% @movies.each do |movie| %>
-      <%= render movie %>
-      <p>
-        <%= link_to "Show this movie", movie %>
-      </p>
+      <div class="col-md-4 mb-3">
+        <div class="card" style="width: 18rem;">
+          <img src="<%= Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true) %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
     <% end %>
+    <!-- Add more cards, they will wrap to next line automatically -->
   </div>
-  <%= link_to "New movie", new_movie_path %>
-<% else %>
-  <%= link_to 'Sign up', new_user_registration_path %>
-  <%= link_to 'Login', new_user_session_path %>
-<% end %>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
