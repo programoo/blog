@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.movie_id = params[:movie_id]
+    @comment.user_id = params[:user_id]
 
     respond_to do |format|
       if @comment.save
