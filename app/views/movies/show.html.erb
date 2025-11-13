@@ -19,10 +19,10 @@
   <!-- Comment / Reply Panel -->
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Leave a Reply</h5>
+      <h5 class="card-title">ความคิดเห็นของคุณมีค่า อย่าเก็บไว้คนเดียว</h5>
       <%= form_with(model: [ @movie, Comment.new ], local: true) do |form| %>
         <div class="mb-3">
-          <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "Write your reply..." %>
+          <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "แสดงความคิดเห็นของคุณ..." %>
         </div>
         <%= form.submit "Reply", class: "btn btn-primary" %>
       <% end %>
@@ -33,7 +33,7 @@
     <% @movie.comments.order(created_at: :desc).each do |comment| %>
       <div class="card mb-2">
         <div class="card-body">
-          <p class="mb-1"><strong>Admin:</strong> <%= comment.content %></p>
+          <p class="mb-1"><strong><%= current_user.email %>:</strong> <%= comment.content %></p>
           <div class="d-flex align-items-center">
             <i class="bi bi-clock me-1"></i>
             <span><%= time_ago_in_words(comment.created_at) %></span>
