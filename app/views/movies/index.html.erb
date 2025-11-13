@@ -1,16 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<% content_for :title, "Movies" %>
-
-<h1>Movies</h1>
-
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New movie", new_movie_path %>
+<% if user_signed_in? %>
+  Hello, <%= current_user.email %>!
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  <p style="color: green"><%= notice %></p>
+  <% content_for :title, "Movies" %>
+  <h1>Movies</h1>
+  <div id="movies">
+    <% @movies.each do |movie| %>
+      <%= render movie %>
+      <p>
+        <%= link_to "Show this movie", movie %>
+      </p>
+    <% end %>
+  </div>
+  <%= link_to "New movie", new_movie_path %>
+<% else %>
+  <%= link_to 'Sign up', new_user_registration_path %>
+  <%= link_to 'Login', new_user_session_path %>
+<% end %>

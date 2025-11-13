@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @movies = Movie.all
+    @movies = Movie.first(3)
     @comments = Comment.order(created_at: :desc).first(6)
   end
 end
