@@ -15,7 +15,8 @@
           <ul class="flex space-x-6">
             <li><a href="#reviews" class="hover:text-red-500">รีวิวภาพยนตร์</a></li>
             <li><a href="#top-movies" class="hover:text-red-500">ภาพยนตร์ยอดเยี่ยม</a></li>
-            <li><a href="#subscribe" class="hover:text-red-500">Subscribe</a></li>
+            <li><%= link_to "เข้าสู่ระบบ", new_session_path(:user), class: "hover:text-red-500" %>
+            </li>
           </ul>
         </nav>
       </div>
@@ -25,7 +26,7 @@
       <div class="container mx-auto text-center">
         <h2 class="text-5xl font-bold mb-4">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
         <p class="text-gray-300 mb-8 text-lg">คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า</p>
-        <a href="#subscribe" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full">Join Now</a>
+        <a href="<%= new_registration_path(:user) %>" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full">สมัครเลย</a>
       </div>
     </section>
     <!-- Top Movies Section -->
