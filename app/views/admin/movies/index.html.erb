@@ -1,11 +1,12 @@
 <h1>Admin::Movies#index</h1>
 <p>Find me in app/views/admin/movies/index.html.erb</p>
+<%= link_to 'New Movie', new_movie_path, class: 'btn btn-success' %>
 <!-- app/views/movies/index.html.erb -->
 <table class="table-auto border-collapse border border-gray-300 w-full">
   <thead>
     <tr>
       <th class="border px-4 py-2">Title</th>
-      <th class="border px-4 py-2">Descirption</th>
+      <th class="border px-4 py-2">Description</th>
     </tr>
   </thead>
   <tbody>
