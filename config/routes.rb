@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get "movies/index"
+    get "movies/show"
     get "dashboard/index"
   end
   devise_for :users
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "dashboard", to: "dashboard#index"
+    resources :movies
   end
 
 

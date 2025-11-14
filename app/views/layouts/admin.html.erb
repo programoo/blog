@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Panel</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+  <body>
+    <nav style="background:#222; color:white; padding:10px;">
+      Admin Panel
+      |
+      <%= link_to "Dashboard", admin_dashboard_path, style:"color:white;" %>
+      |
+      <%= link_to "Movies", admin_movies_path, style:"color:white;" %>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
