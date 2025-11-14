@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get "dashboard/index"
+  end
   devise_for :users
   resources :comments
   resources :movies
@@ -7,6 +10,13 @@ Rails.application.routes.draw do
   resources :movies do
     resources :comments, only: [:create, :destroy, :index]
   end
+
+  namespace :admin do
+    get "dashboard", to: "dashboard#index"
+  end
+
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
