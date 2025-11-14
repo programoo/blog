@@ -1,2 +1,25 @@
 <h1>Admin::Movies#index</h1>
 <p>Find me in app/views/admin/movies/index.html.erb</p>
+<!-- app/views/movies/index.html.erb -->
+<table class="table-auto border-collapse border border-gray-300 w-full">
+  <thead>
+    <tr>
+      <th class="border px-4 py-2">Title</th>
+      <th class="border px-4 py-2">Descirption</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td class="border px-4 py-2"><%= movie.title %></td>
+        <td class="border px-4 py-2"><%= movie.description[0..50] + "..." %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="mt-4">
+  <%# Render navigation bar helpers with various types and styles %>
+  <%== @pagy.series_nav %>
+  <%== @pagy.info_tag %>
+  <%# <%== Pagy.dev_tools %>
+</div>
