@@ -16,6 +16,9 @@
             <li><a href="#reviews" class="hover:text-red-500">รีวิวภาพยนตร์</a></li>
             <li><a href="#top-movies" class="hover:text-red-500">ภาพยนตร์ยอดเยี่ยม</a></li>
             <% if user_signed_in? %>
+              <% if current_user.admin %>
+                <li> <%= link_to "Admin Dashboard", admin_dashboard_path, target: "_blank" %> </li>
+              <% end %>
               <li>
                 <%= current_user.email %>
               </li>
