@@ -1,6 +1,6 @@
 class Admin::ApplicationController < ActionController::Base
   include Pagy::Method
-  layout "admin"
+  layout "application"
   before_action :authenticate_user!
   before_action :require_admin
 
