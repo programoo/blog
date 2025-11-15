@@ -1,118 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieVerse - Your Movie Review Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-900 text-white font-sans">
-    <!-- Header -->
-    <header class="bg-gray-800 p-6">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-3xl font-bold text-red-500">PopcornThai</h1>
-        <nav>
-          <ul class="flex space-x-6">
-            <li><a href="#reviews" class="hover:text-red-500">รีวิวภาพยนตร์</a></li>
-            <li><a href="#top-movies" class="hover:text-red-500">ภาพยนตร์ยอดเยี่ยม</a></li>
-            <% if user_signed_in? %>
-              <% if current_user.admin %>
-                <li> <%= link_to "Admin Dashboard", admin_dashboard_path, target: "_blank" %> </li>
-              <% end %>
-              <li>
-                <%= current_user.email %>
-              </li>
-              <li>
-                <%= button_to "ออกจากระบบ", destroy_user_session_path, method: :delete %>
-              </li>
-            <% else %>
-              <li><%= link_to "เข้าสู่ระบบ", new_session_path(:user), class: "hover:text-red-500" %>
-              <% end %>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <!-- Hero Section -->
-      <section class="bg-dark py-5 text-center text-white">
-        <div class="container">
-          <% if !user_signed_in? %>
-            <h2 class="display-4 fw-bold mb-3">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
-          <% else %>
-            <h2 class="display-4 fw-bold mb-3">สวัสดี <%= current_user.email %></h2>
-          <% end %>
-          <p class="text-secondary mb-4 fs-5">
-            คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า
-          </p>
-          <% if !user_signed_in? %>
-            <a href="<%= new_registration_path(:user) %>" class="btn btn-danger btn-lg rounded-pill">สมัครเลย</a>
-          <% end %>
-        </div>
-      </section>
-      <!-- Top Movies Section -->
-      <section id="top-movies" class="py-5 bg-secondary text-white">
-        <div class="container text-center mb-4">
-          <h3 class="display-5 fw-bold mb-3">ภาพยนตร์ยอดนิยมแห่งปี</h3>
-          <p class="text-light mx-auto" style="max-width: 600px;">
-            ชมรายชื่อภาพยนตร์ที่ได้คะแนนสูงสุดจากทั้งรีวิวของผู้เชี่ยวชาญและเสียงโหวตจากชุมชนของเรา.
-          </p>
-        </div>
-        <div class="container">
-          <div class="row g-4">
-            <% @movies.first(6).each do |movie| %>
-              <div class="col-12 col-md-4">
-                <%= link_to movie_path(movie), target: "_blank", style: "text-decoration: none; color: inherit;" do %>
-                  <div class="card bg-dark text-white h-100 shadow-sm overflow-hidden border-0">
-                    <div class="overflow-hidden">
-                      <%= image_tag Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true),
+<!-- Hero Section -->
+<section class="bg-dark py-5 text-center text-white">
+  <div class="container">
+    <% if !user_signed_in? %>
+      <h2 class="display-4 fw-bold mb-3">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
+    <% else %>
+      <h2 class="display-4 fw-bold mb-3">สวัสดี <%= current_user.email %></h2>
+    <% end %>
+    <p class="text-secondary mb-4 fs-5">
+      คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า
+    </p>
+    <% if !user_signed_in? %>
+      <a href="<%= new_registration_path(:user) %>" class="btn btn-danger btn-lg rounded-pill">สมัครเลย</a>
+    <% end %>
+  </div>
+</section>
+<!-- Top Movies Section -->
+<section id="top-movies" class="py-5 bg-secondary text-white">
+  <div class="container text-center mb-4">
+    <h3 class="display-5 fw-bold mb-3">ภาพยนตร์ยอดนิยมแห่งปี</h3>
+    <p class="text-light mx-auto" style="max-width: 600px;">
+      ชมรายชื่อภาพยนตร์ที่ได้คะแนนสูงสุดจากทั้งรีวิวของผู้เชี่ยวชาญและเสียงโหวตจากชุมชนของเรา.
+    </p>
+  </div>
+  <div class="container">
+    <div class="row g-4">
+      <% @movies.first(6).each do |movie| %>
+        <div class="col-12 col-md-4">
+          <%= link_to movie_path(movie), target: "_blank", style: "text-decoration: none; color: inherit;" do %>
+            <div class="card bg-dark text-white h-100 shadow-sm overflow-hidden border-0">
+              <div class="overflow-hidden">
+                <%= image_tag Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true),
                   alt: movie.title,
                   class: "card-img-top img-fluid transition-transform hover-scale" %>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title fw-bold mb-2"><%= movie.title %></h5>
-                      <p class="card-text text-light"><%= movie.description[0..100] + "..." %></p>
-                    </div>
-                  </div>
-                <% end %>
               </div>
-            <% end %>
-          </div>
-        </div>
-        <div class="container text-end mt-3">
-          <%= link_to "ภาพยนต์ทั้งหมด >>>", movies_path, class: "text-decoration-none text-warning fw-bold" %>
-        </div>
-      </section>
-      <!-- Latest Reviews Section -->
-      <section id="reviews" class="py-5 bg-dark text-white">
-        <div class="container text-center mb-4">
-          <h3 class="display-5 fw-bold mb-3">รีวิวล่าสุด</h3>
-          <p class="text-light mx-auto" style="max-width: 600px;">
-            อ่านรีวิวล่าสุดจากนักวิจารณ์และคนรักหนังของเรา
-          </p>
-        </div>
-        <div class="container">
-          <div class="row g-4">
-            <% @comments.each do |comment| %>
-              <div class="col-12 col-md-6 col-lg-4">
-                <%= link_to movie_path(comment.movie), target: "_blank", style: "text-decoration: none; color: inherit;" do %>
-                  <div class="card bg-secondary text-white h-100 shadow-sm border-0 p-3">
-                    <div class="card-body">
-                      <h5 class="card-title fw-bold mb-2"><%= comment.movie.title %></h5>
-                      <p class="card-text text-light mb-2"><%= comment.content %></p>
-                      <small class="text-danger fw-bold">
-                        <i class="bi bi-chat"></i> <%= comment.movie.comments.size %>
-                        <i class="bi bi-clock ms-3"></i> <%= time_ago_in_words(comment.created_at) %>
-                      </small>
-                    </div>
-                  </div>
-                <% end %>
+              <div class="card-body">
+                <h5 class="card-title fw-bold mb-2"><%= movie.title %></h5>
+                <p class="card-text text-light"><%= movie.description[0..100] + "..." %></p>
               </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
-      </section>
-      <!-- Footer -->
-      <footer class="bg-gray-800 py-6 text-center text-gray-400">
-        &copy; 2025 PopcornThai. All rights reserved.
-      </footer>
-    </body>
-  </html>
+      <% end %>
+    </div>
+  </div>
+  <div class="container text-end mt-3">
+    <%= link_to "รีวิวภาพยนต์ทั้งหมด >>>", movies_path, class: "text-decoration-none text-warning fw-bold" %>
+  </div>
+</section>
+<!-- Latest Reviews Section -->
+<section id="reviews" class="py-5 bg-dark text-white">
+  <div class="container text-center mb-4">
+    <h3 class="display-5 fw-bold mb-3">รีวิวล่าสุด</h3>
+    <p class="text-light mx-auto" style="max-width: 600px;">
+      อ่านรีวิวล่าสุดจากนักวิจารณ์และคนรักหนังของเรา
+    </p>
+  </div>
+  <div class="container">
+    <div class="row g-4">
+      <% @comments.each do |comment| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <%= link_to movie_path(comment.movie), target: "_blank", style: "text-decoration: none; color: inherit;" do %>
+            <div class="card bg-secondary text-white h-100 shadow-sm border-0 p-3">
+              <div class="card-body">
+                <h5 class="card-title fw-bold mb-2"><%= comment.movie.title %></h5>
+                <p class="card-text text-light mb-2"><%= comment.content %></p>
+                <small class="text-danger fw-bold">
+                  <i class="bi bi-chat"></i> <%= comment.movie.comments.size %>
+                  <i class="bi bi-clock ms-3"></i> <%= time_ago_in_words(comment.created_at) %>
+                </small>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
