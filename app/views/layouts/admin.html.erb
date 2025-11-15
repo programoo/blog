@@ -23,20 +23,30 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <nav style="background:#222; color:white; padding:10px;">
-      Admin Panel
-      |
-      <%= link_to "Dashboard", admin_dashboard_path, style:"color:white;" %>
-      |
-      <%= link_to "Movies", admin_movies_path, style:"color:white;" %>
+  <body class="bg-light">
+    <% if notice.present? %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="<%= admin_movies_path %>">Admin Panel</a>
+        <!-- You can add links to Dashboard, Movies, Users, etc. -->
+      </div>
     </nav>
-    <%= yield %>
-    <!-- Bootstrap JS bundle via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    <div class="container my-4">
+      <!-- This container adds nice padding and margin around content -->
+      <%= yield %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384‑FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
+    </div>
+    <footer class="bg-dark text-light py-3 mt-auto">
+      <div class="container text-center">
+        &copy; <%= Time.current.year %> Admin Panel
+      </div>
+    </footer>
   </body>
 </html>

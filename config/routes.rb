@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get "movies/index"
-    get "movies/show"
     get "dashboard/index"
+    resources :movies
   end
   devise_for :users
   resources :comments
