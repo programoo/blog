@@ -1,13 +1,14 @@
-<div id="<%= dom_id movie %>">
-  <% movie.images.each do |image| %>
-    <%= image_tag image.variant(resize_to_limit: [300, 300]), class: "block mx-auto w-64 h-auto" %><br>
-  <% end %>
-  <p>
-    <strong>Title:</strong>
-    <%= movie.title %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= movie.description[0..100] + "..." %>
-  </p>
+<div class="col">
+  <div class="card h-100 shadow-sm">
+    <% if movie.images.attached? %>
+      <%= image_tag movie.images.first&.variant(resize_to_fill: [150, 150]), class: "card-img-top", alt: movie.title %>
+    <% else %>
+      <%= image_tag "placeholder.png", class: "card-img-top", alt: "No thumbnail", size: "#{304}x#{304}" %>
+    <% end %>
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title"><%= movie.title %></h5>
+      <p class="card-text text-truncate"><%= movie.description %></p>
+      <%= link_to "Watch", movie_path(movie), class: "btn btn-success mt-auto" %>
+    </div>
+  </div>
 </div>

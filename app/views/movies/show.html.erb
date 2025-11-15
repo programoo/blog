@@ -3,7 +3,11 @@
   <div class="card mb-3" style="max-width: 1024px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="<%= Rails.application.routes.url_helpers.rails_blob_url(@movie.images.first, only_path: true) %>" class="img-fluid rounded-start" alt="...">
+        <% if @movie.images.attached? %>
+          <%= image_tag @movie.images&.first&.variant(resize_to_fill: [150, 150]), class: "card-img-top", alt: @movie.title %>
+        <% else %>
+          <%= image_tag "placeholder.png", class: "card-img-top", alt: "No thumbnail", size: "#{304}x#{304}" %>
+        <% end %>
       </div>
       <div class="col-md-8">
         <div class="card-body">

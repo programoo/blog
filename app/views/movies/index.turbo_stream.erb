@@ -1,0 +1,20 @@
+<turbo-stream action="append" target="movie-list">
+  <template>
+    <% @movies.each do |movie| %>
+      <div class="col" id="<%= dom_id movie %>">
+        <div class="card h-100 shadow-sm">
+          <% if movie.images.attached? %>
+            <%= image_tag movie.images&.first&.variant(resize_to_fill: [150, 150]), class: "card-img-top", alt: movie.title %>
+          <% else %>
+            <%= image_tag "placeholder.png", class: "card-img-top", alt: "No thumbnail", size: "#{304}x#{304}" %>
+          <% end %>
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text text-truncate"><%= movie.description %></p>
+            <%= link_to "Watch", movie_path(movie), class: "btn btn-success mt-auto" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </template>
+</turbo-stream>
