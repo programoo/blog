@@ -2,18 +2,13 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   def index
-    # if params[:query].present?
-    #   @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
-    # else
-    #   @searched_movies = Movie.order(created_at: :desc)
-    # end
-    puts "PARAMSSS"
-    puts params
-    current_page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    next_page = current_page + 1
+    if params[:query].present?
+      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+    else
+      @searched_movies = Movie.order(created_at: :desc)
+    end
 
-
-    @pagy, @movies = pagy(Movie.order(created_at: :desc), limit: 10)
+    @pagy, @movies = pagy(@searched_movies, limit: 10)
 
 
     respond_to do |format|

@@ -1,6 +1,12 @@
 <div class="mr-20">
   <%= link_to "<<< กลับสู่หน้าหลัก", root_path %>
 </div>
+<div style="display: flex; align-items: center; gap: 10px;">
+  <%= form_with url: movies_path, method: :get, local: true, html: { style: 'display: flex; align-items: center; gap: 5px;' } do |form| %>
+    <%= form.text_field :query, value: params[:query], placeholder: "Search posts...", class: 'form-control' %>
+    <%= form.submit "Search", class: 'btn btn-primary' %>
+  <% end %>
+</div>
 <div
   data-controller="infinite-scroll"
   data-infinite-scroll-url-value="<%= movies_path %>"
