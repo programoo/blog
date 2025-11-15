@@ -1,18 +1,19 @@
-<div style="display: flex; align-items: center; gap: 10px;">
-  <%= form_with url: movies_path, method: :get, local: true, html: { style: 'display: flex; align-items: center; gap: 5px;' } do |form| %>
-    <%= form.text_field :query, value: params[:query], placeholder: "Search posts...", class: 'form-control' %>
-    <%= form.submit "Search", class: 'btn btn-primary' %>
+<div class="d-flex justify-content-center my-4">
+  <%= form_with url: movies_path, method: :get, local: true do |form| %>
+    <div class="input-group" style="max-width: 400px;">
+      <span class="input-group-text bg-white border-end-0">
+        <i class="bi bi-search"></i>
+      </span>
+      <%= form.text_field :query, value: params[:query], placeholder: "Search posts...", class: "form-control border-start-0" %>
+      <%= form.submit "Search", class: "btn btn-primary" %>
+    </div>
   <% end %>
 </div>
-<div
-  data-controller="infinite-scroll"
-  data-infinite-scroll-url-value="<%= movies_path %>"
-  data-infinite-scroll-target="list"
+<div data-controller="infinite-scroll" data-infinite-scroll-url-value="<%= movies_path %>" data-infinite-scroll-target="list"
   data-next-page="<%= @pagy.next %>"
   data-last-page="<%= @pagy.last %>"
   >
   <div class="container mt-4">
-    <h1 class="mb-4">Movies</h1>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="movie-list">
       <% @movies.each do |movie| %>
         <%= render movie %>
