@@ -1,6 +1,12 @@
 <h1>Admin::Movies#index</h1>
 <p>Find me in app/views/admin/movies/index.html.erb</p>
-<%= link_to 'New Movie', new_movie_path, class: 'btn btn-success' %>
+<div style="display: flex; align-items: center; gap: 10px;">
+  <%= form_with url: admin_movies_path, method: :get, local: true, html: { style: 'display: flex; align-items: center; gap: 5px;' } do |form| %>
+    <%= form.text_field :query, value: params[:query], placeholder: "Search posts...", class: 'form-control' %>
+    <%= form.submit "Search", class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to 'New Movie', new_movie_path, class: 'btn btn-success' %>
+</div>
 <!-- app/views/movies/index.html.erb -->
 <table class="table-auto border-collapse border border-gray-300 w-full">
   <thead>

@@ -1,0 +1,47 @@
+<div class="mr-20">
+  <%= link_to "<<< กลับสู่หน้าหลัก", root_path %>
+</div>
+<div data-controller="greet">
+  <button data-action="greet#hello" class="btn btn-primary">
+    Click Me
+  </button>
+</div>
+<div data-controller="greet">
+  <input data-greet-target="name" type="text">
+  <button data-action="greet#greet">
+    Say Hello
+  </button>
+</div>
+<div class="container">
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-md-4 mb-3">
+        <%= link_to movie_path(movie) ,target: "_blank", style: "text-decoration: none; color: inherit;" do %>
+          <div class="card" style="width: 18rem;">
+            <% if movie.images.present? %>
+              <img src="<%= Rails.application.routes.url_helpers.rails_blob_url(movie.images&.first, only_path: true) %>" class="card-img-top" alt="...">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= movie.title %></h5>
+              <p class="card-text"><%= movie.description[0..50] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <!-- Add more cards, they will wrap to next line automatically -->
+  </div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>

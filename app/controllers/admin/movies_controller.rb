@@ -1,6 +1,12 @@
 class Admin::MoviesController < Admin::ApplicationController
   def index
-    @pagy, @movies = pagy(:offset, Movie.order(created_at: :desc), limit: 10)
+    if params[:query].present?
+      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+    else
+      @searched_movies = Movie.order(created_at: :desc)
+    end
+
+    @pagy, @movies = pagy(:offset, @searched_movies, limit: 10)
   end
 
   def show
