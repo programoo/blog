@@ -29,9 +29,15 @@
           <%= link_to movie_path(movie), target: "_blank", style: "text-decoration: none; color: inherit;" do %>
             <div class="card bg-dark text-white h-100 shadow-sm overflow-hidden border-0">
               <div class="overflow-hidden">
-                <%= image_tag Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true),
-                  alt: movie.title,
-                  class: "card-img-top img-fluid transition-transform hover-scale" %>
+                <% if movie.images.attached? && movie.images.first.present? %>
+                  <%= image_tag Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true),
+                alt: movie.title,
+                class: "card-img-top img-fluid transition-transform hover-scale" %>
+                <% else %>
+                  <%= image_tag "placeholder.png",
+                alt: movie.title,
+                class: "card-img-top img-fluid transition-transform hover-scale" %>
+                <% end %>
               </div>
               <div class="card-body">
                 <h5 class="card-title fw-bold mb-2"><%= movie.title %></h5>
