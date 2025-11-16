@@ -1,6 +1,6 @@
 <div style="display: flex; align-items: center; gap: 10px;">
   <%= form_with url: admin_movies_path, method: :get, local: true, html: { style: 'display: flex; align-items: center; gap: 5px;' } do |form| %>
-    <%= form.text_field :query, value: params[:query], placeholder: "Search movie...", class: 'form-control' %>
+    <%= form.text_field :query, value: params[:query], placeholder: "Search", class: 'form-control' %>
     <%= form.submit "Search", class: 'btn btn-primary' %>
   <% end %>
   <%= link_to 'New Movie', new_movie_path, class: 'btn btn-success' %>

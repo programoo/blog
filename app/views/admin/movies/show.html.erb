@@ -19,7 +19,6 @@
   <!-- Comment / Reply Panel -->
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title">ความคิดเห็นของคุณมีค่า อย่าเก็บไว้คนเดียว</h5>
       <%= form_with(model: [ @movie, Comment.new ], local: true) do |form| %>
         <div class="mb-3">
           <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "แสดงความคิดเห็นของคุณ..." %>
