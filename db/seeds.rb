@@ -9,8 +9,10 @@
 #   end
 
 100.times do
-  Movie.create(
+  movie = Movie.create(
     title: Faker::Movie.title,
     description: Faker::Movie.quote
   )
+
+  MovieMetric.find_or_create_by!(movie_id: movie.id)
 end

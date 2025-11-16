@@ -59,3 +59,6 @@ docker compose --env-file .env up --build
 rails movies:create_metrics
 bin/rails movies:create_metrics
  rails -T | grep movie
+
+sudo service postgresql start
+rails db:migrate:reset
