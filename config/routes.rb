@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :feeds
   resources :user_likes
   resources :movie_metrics
   namespace :admin do

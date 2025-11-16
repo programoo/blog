@@ -38,6 +38,7 @@
             <a class="navbar-brand" href="<%= root_path %>">Home</a>
           <% end %>
           <a class="navbar-brand" href="<%= movies_path %>">Movies</a>
+          <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
           <% if current_user&.admin %>
             <a class="navbar-brand" href="<%= admin_movies_path %>">Admin Panel</a>
           <% end %>
