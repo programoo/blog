@@ -25,6 +25,7 @@ class UserLikesController < ApplicationController
 
     respond_to do |format|
       if @user_like.save
+        @user_like.movie_metric.increment!(:likes_count)
         format.html { redirect_to @user_like, notice: "User like was successfully created." }
         format.json { render :show, status: :created, location: @user_like }
       else
