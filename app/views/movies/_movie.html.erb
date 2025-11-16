@@ -10,5 +10,23 @@
       <p class="card-text text-truncate"><%= movie.description %></p>
       <%= link_to "ดูรีวิว", movie_path(movie), class: "btn btn-success mt-auto" %>
     </div>
+    <div class="card-footer bg-white">
+      <div class="d-flex justify-content-around text-center">
+        <button class="btn btn-light w-100 me-2">
+          <i class="bi bi-hand-thumbs-up"></i> 
+        </button>
+        <button class="btn btn-light w-100 me-2" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#comments-panel">
+          <i class="bi bi-chat-left-text"></i> 
+        </button>
+        <button class="btn btn-light w-100">
+          <i class="bi bi-share"></i> 
+        </button>
+        <button class="btn btn-light w-100">
+          <i class="bi bi-eye"></i> <%= movie.movie_metric.views_count %>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
