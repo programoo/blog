@@ -1,0 +1,12 @@
+<% content_for :title, "Editing user like" %>
+
+<h1>Editing user like</h1>
+
+<%= render "form", user_like: @user_like %>
+
+<br>
+
+<div>
+  <%= link_to "Show this user like", @user_like %> |
+  <%= link_to "Back to user likes", user_likes_path %>
+</div>

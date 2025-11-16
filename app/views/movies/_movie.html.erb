@@ -11,7 +11,7 @@
       <%= link_to "ดูรีวิว", movie_path(movie), class: "btn btn-success mt-auto",data: { turbo: false } %>
     </div>
     <div class="card-footer bg-white">
-      <%= render "social_panel", movie_metric: movie.movie_metric %>
+      <%= render "social_panel", movie: movie %>
     </div>
   </div>
 </div>

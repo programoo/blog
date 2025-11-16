@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user_like %>
+
+<div>
+  <%= link_to "Edit this user like", edit_user_like_path(@user_like) %> |
+  <%= link_to "Back to user likes", user_likes_path %>
+
+  <%= button_to "Destroy this user like", @user_like, method: :delete %>
+</div>

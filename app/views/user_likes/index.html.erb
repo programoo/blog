@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "User likes" %>
+
+<h1>User likes</h1>
+
+<div id="user_likes">
+  <% @user_likes.each do |user_like| %>
+    <%= render user_like %>
+    <p>
+      <%= link_to "Show this user like", user_like %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user like", new_user_like_path %>
