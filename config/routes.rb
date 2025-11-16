@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movie_metrics
   namespace :admin do
     get "dashboard/index"
     resources :movies

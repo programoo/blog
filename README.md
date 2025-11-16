@@ -53,3 +53,9 @@ docker run --name my-nginx -p 80:80 -d nginx
 
 ## production
 docker compose --env-file .env up --build
+
+
+# Migrate moive object to have movie_metric
+rails movies:create_metrics
+bin/rails movies:create_metrics
+ rails -T | grep movie

@@ -1,0 +1,2 @@
+class MovieMetric < ApplicationRecord
+end

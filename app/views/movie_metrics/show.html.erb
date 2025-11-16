@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @movie_metric %>
+
+<div>
+  <%= link_to "Edit this movie metric", edit_movie_metric_path(@movie_metric) %> |
+  <%= link_to "Back to movie metrics", movie_metrics_path %>
+
+  <%= button_to "Destroy this movie metric", @movie_metric, method: :delete %>
+</div>

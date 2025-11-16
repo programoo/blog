@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Movie metrics" %>
+
+<h1>Movie metrics</h1>
+
+<div id="movie_metrics">
+  <% @movie_metrics.each do |movie_metric| %>
+    <%= render movie_metric %>
+    <p>
+      <%= link_to "Show this movie metric", movie_metric %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New movie metric", new_movie_metric_path %>

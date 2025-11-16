@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @movie.movie_metric.increment!(:views_count)
   end
 
   def new
@@ -32,6 +33,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
+        MovieMetric.find_or_create_by(movie_id: @movie.id)
         format.html { redirect_to admin_movies_path, notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else

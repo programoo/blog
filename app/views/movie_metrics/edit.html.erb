@@ -1,0 +1,12 @@
+<% content_for :title, "Editing movie metric" %>
+
+<h1>Editing movie metric</h1>
+
+<%= render "form", movie_metric: @movie_metric %>
+
+<br>
+
+<div>
+  <%= link_to "Show this movie metric", @movie_metric %> |
+  <%= link_to "Back to movie metrics", movie_metrics_path %>
+</div>
