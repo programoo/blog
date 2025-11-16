@@ -25,15 +25,15 @@
     <div class="card-footer bg-white">
       <div class="d-flex justify-content-around text-center">
         <button class="btn btn-light w-100 me-2">
-          👍 ถูกใจ
+          <i class="bi bi-hand-thumbs-up"></i> <%= @movie.movie_metric.likes_count %>
         </button>
         <button class="btn btn-light w-100 me-2" 
         data-bs-toggle="collapse" 
         data-bs-target="#comments-panel">
-          💬 แสดงความคิดเห็น
+          <i class="bi bi-chat-dots"></i> <%= @movie.movie_metric.comments_count %>
         </button>
         <button class="btn btn-light w-100">
-          👆🏿 แชร์
+          <i class="bi bi-share"></i> <%= @movie.movie_metric.shares_count %>
         </button>
         <button class="btn btn-light w-100">
           <i class="bi bi-eye"></i> <%= @movie.movie_metric.views_count %>
