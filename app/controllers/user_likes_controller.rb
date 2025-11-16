@@ -65,6 +65,6 @@ class UserLikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_like_params
-      params.expect(user_like: [ :user_id, :movie_id ])
+      params.permit(:user_id, :movie_id)
     end
 end
