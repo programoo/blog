@@ -27,6 +27,7 @@ class Admin::MoviesController < Admin::ApplicationController
     @movie = Movie.new(movie_params)
 
     respond_to do |format|
+      MovieMetric.find_or_create_by(movie_id: @movie.id)
       if @movie.save
         format.html { redirect_to admin_movies_path, notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
