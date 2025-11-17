@@ -1,0 +1,7 @@
+<turbo-stream action="append" target="feed-list">
+  <template>
+    <% @movies.each do |movie| %>
+      <%= render "shared/feed", movie: movie %>
+    <% end %>
+  </template>
+</turbo-stream>

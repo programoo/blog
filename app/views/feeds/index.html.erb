@@ -1,5 +1,13 @@
-<div class="container py-4 d-flex justify-content-center">
-  <% @movies.each do |movie| %>
-    <%= render "shared/feed", movie: movie %>
-  <% end %>
+<div class="container py-4">
+  <div class="row justify-content-center" id="feed-list"
+       data-controller="feeds" 
+       data-feeds-target="list"
+       data-next-page="<%= @pagy.next %>"
+       data-last-page="<%= @pagy.last %>">
+    <% @movies.each do |movie| %>
+      <div class="col-auto d-flex justify-content-center mb-4">
+        <%= render "shared/feed", movie: movie %>
+      </div>
+    <% end %>
+  </div>
 </div>

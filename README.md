@@ -62,3 +62,6 @@ bin/rails movies:create_metrics
 
 sudo service postgresql start
 rails db:migrate:reset
+
+sudo -i -u postgres
+psql -U postgres

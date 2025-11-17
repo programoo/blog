@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-around text-center">
+  <% disable_buttons = current_user.present? ? false : true %>
+  <%= form_with url: user_likes_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :movie_id, value: movie.id %>
+    <%= f.hidden_field :user_id, value: current_user&.id %>
+    <button type="submit" class="btn btn-light w-100 me-2 disabled">
+      <i class="bi bi-hand-thumbs-up"></i> <%= movie.movie_metric.likes_count %>
+    </button>
+  <% end %>
+  <button class="btn btn-light w-100 me-2 <%= 'disabled' if disable_buttons %>" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#comments-panel">
+    <i class="bi bi-chat-dots"></i> <%= movie.movie_metric.comments_count %>
+  </button>
+  <button class="btn btn-light w-100 disabled">
+    <i class="bi bi-eye"></i> <%= movie.movie_metric.views_count %>
+  </button>
+</div>
