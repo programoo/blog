@@ -3,10 +3,20 @@
     <!-- Left Section: Image + Details -->
     <div class="col-md-6 mb-4">
       <div class="card shadow-sm">
-        <img src="movie-poster.jpg" class="card-img-top" alt="Movie Poster">
-        <div class="card-body">
-          <h5 class="card-title">Movie Title</h5>
-          <p class="card-text">Movie description goes here. You can include cast, release date, genre, or review snippet.</p>
+        <div class="row g-0 h-100">
+          <div class="col-md-4 d-flex align-items-stretch">
+            <% if @movie.images.attached? %>
+              <%= image_tag @movie.images.first&.variant(resize_to_fill: [150, 150]), class: "img-fluid rounded-start w-100 h-100", style: "object-fit: cover;", alt: @movie.title %>
+            <% else %>
+              <%= image_tag "placeholder.png", class: "img-fluid rounded-start w-100 h-100", style: "object-fit: cover;", alt: "No thumbnail", size: "150x150" %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Movie Title</h5>
+              <p class="card-text">Movie description goes here. You can include cast, release date, genre, or review snippet.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
