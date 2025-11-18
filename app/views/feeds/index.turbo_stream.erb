@@ -1,7 +1,9 @@
 <turbo-stream action="append" target="feed-list">
   <template>
     <% @movies.each do |movie| %>
-      <%= render "shared/feed", movie: movie %>
+      <div class="col-auto d-flex justify-content-center mb-4">
+        <%= render "shared/feed", movie: movie %>
+      </div>
     <% end %>
   </template>
 </turbo-stream>
