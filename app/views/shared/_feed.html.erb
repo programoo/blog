@@ -7,18 +7,20 @@
     </div>
   </div>
   <!-- Image -->
-  <div class="w-100" style="height:600px; overflow:hidden;">
-    <% if movie.images.attached? %>
-      <%= image_tag movie.images.first.variant(resize_to_fill: [900, 500]),
+  <%= link_to movie_path(movie), data: { turbo: false } do %>
+    <div class="w-100" style="height:600px; overflow:hidden;">
+      <% if movie.images.attached? %>
+        <%= image_tag movie.images.first.variant(resize_to_fill: [900, 500]),
                       class: "img-fluid rounded-0", alt: movie.title %>
-    <% elsif movie.source_image.present? %>
-      <%= image_tag movie.source_image,
+      <% elsif movie.source_image.present? %>
+        <%= image_tag movie.source_image,
                       class: "img-fluid rounded-0", alt: "Source Image" %>
-    <% else %>
-      <%= image_tag "placeholder.png",
+      <% else %>
+        <%= image_tag "placeholder.png",
                       class: "img-fluid rounded-0", alt: "No image" %>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
   <!-- Description -->
   <div class="card-body">
     <p class="card-text"><%= simple_format(movie.description) %></p>
