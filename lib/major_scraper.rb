@@ -22,34 +22,39 @@ class MajorScraper
 
     movies = []
     # binding.pry
-    doc.css('.ml-box').each do |movie_box|
-      # Image from style attribute
-      cover_style = movie_box.at_css('.mlb-cover')&.[]('style')
-      image_url = cover_style&.match(/url\((.*?)\)/)&.captures&.first
+    doc.css('.ml-box').each do |box|
+        cover_style = box.at_css('.mlb-cover')['style']
+        image_url = cover_style[/url\((.*?)\)/, 1]  # extract from background:url(...)
 
-      # Movie page URL
-      movie_url = movie_box.at_css('.mlb-name a')&.[]('href')
-      movie_url = BASE_URL + movie_url if movie_url&.start_with?('/')
+        title = box.at_css('.mlbc-name')&.text&.strip
+        title_alt = box.at_css('.mlb-name a')&.text&.strip   # fallback title
 
-      # Title
-      title = movie_box.at_css('.mlb-name a')&.text&.strip
+        genres = box.css('.mlb-genres .genres_span')
+                    .map { |g| g.text.strip }
+                    .reject(&:empty?)
 
-      # Genres (from mlb-genres)
-      genres = movie_box.css('.mlb-genres .genres_span').map(&:text).map(&:strip)
-      duration = genres.pop # last span is duration
-      genres = genres.map { |g| g.split('/').map(&:strip) }.flatten # split genres if "/"
+        duration = box.at_css('.mlbc-time')&.text&.strip
 
-      # Release date
-      release_date = movie_box.at_css('.mlb-date')&.text&.strip
+        category = box.at_css('.mlbc-cate')&.text&.strip
 
-      movies << {
-        title: title,
-        url: movie_url,
-        image_url: image_url,
-        genres: genres,
-        duration: duration,
-        release_date: release_date
-      }
+        sound = box.at_css('.mlbc-sound')&.text&.strip
+
+        date = box.at_css('.mlb-date')&.text&.strip
+
+        detail_url = box.at_css('.mlbc-btn a.mlbc-btn-mi')['href'] rescue nil
+        buy_url    = box.at_css('.mlbc-btn a.buynow_button')['href'] rescue nil
+
+        movies << {
+            image: image_url,
+            title: title || title_alt,
+            category: category,
+            duration: duration,
+            sound: sound,
+            date: date,
+            genres: genres,
+            detail_url: detail_url,
+            buy_url: buy_url
+        }
     end
 
     movies
