@@ -20,6 +20,43 @@ class Admin::MoviesController < Admin::ApplicationController
 
   # GET /movies/1/edit
   def edit
+    client = OpenAI::Client.new
+    response = client.chat(
+        parameters: {
+          model: "gpt-4.1",
+          messages: [
+            { role: "system", content: "You are a helpful assistant that responds only in JSON." },
+            { role: "system", content: "locked structured: {
+  'title': '',
+  'year': ,
+  'genre': [
+    ''
+  ],
+  'director': '',
+  'writers': [
+    ''
+  ],
+  'cast': [
+    ''
+  ],
+  'plot': '',
+  'runtime': '',
+  'language': '',
+  'country': '',
+  'imdb_rating': 0,
+  'images': [
+    ''
+  ],
+  'trailer_youtube': '',
+  'test_field': ''
+}'"},
+            { role: "user", content: "give me movie detail of the movie named including images and trailers youtube: " + @movie.title}
+          ], # Required.
+          temperature: 0
+      }
+    )
+    puts JSON.pretty_generate(response)
+    # puts response.dig("choices", 0, "message", "content")
   end
 
   # POST /movies or /movies.json

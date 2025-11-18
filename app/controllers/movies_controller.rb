@@ -23,15 +23,7 @@ class MoviesController < ApplicationController
   end
 
   def new
-    client = OpenAI::Client.new
-    response = client.chat(
-        parameters: {
-        model: "gpt-4o", # Required.
-        messages: [{ role: "user", content: "Hello!"}], # Required.
-        temperature: 0.7
-      }
-    )
-    puts response.dig("choices", 0, "message", "content")
+
     @movie = Movie.new
   end
 
