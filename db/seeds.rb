@@ -8,11 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-100.times do
-  movie = Movie.create(
-    title: Faker::Movie.title,
-    description: Faker::Movie.quote
-  )
+# 100.times do
+#   movie = Movie.create(
+#     title: Faker::Movie.title,
+#     description: Faker::Movie.quote
+#   )
 
-  MovieMetric.find_or_create_by!(movie_id: movie.id)
-end
+#   MovieMetric.find_or_create_by!(movie_id: movie.id)
+# end

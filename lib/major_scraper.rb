@@ -26,20 +26,20 @@ class MajorScraper
         cover_style = box.at_css('.mlb-cover')['style']
         image_url = cover_style[/url\((.*?)\)/, 1]  # extract from background:url(...)
 
-        title = box.at_css('.mlbc-name')&.text&.strip
-        title_alt = box.at_css('.mlb-name a')&.text&.strip   # fallback title
+        title = box.at_css('.mlbc-name')&.text&.strip.squish
+        title_alt = box.at_css('.mlb-name a')&.text&.strip.squish   # fallback title
 
         genres = box.css('.mlb-genres .genres_span')
-                    .map { |g| g.text.strip }
+                    .map { |g| g.text.strip.squish }
                     .reject(&:empty?)
 
-        duration = box.at_css('.mlbc-time')&.text&.strip
+        duration = box.at_css('.mlbc-time')&.text&.strip.squish
 
-        category = box.at_css('.mlbc-cate')&.text&.strip
+        category = box.at_css('.mlbc-cate')&.text&.strip.squish
 
-        sound = box.at_css('.mlbc-sound')&.text&.strip
+        sound = box.at_css('.mlbc-sound')&.text&.strip.squish
 
-        date = box.at_css('.mlb-date')&.text&.strip
+        date = box.at_css('.mlb-date')&.text&.strip.squish
 
         detail_url = box.at_css('.mlbc-btn a.mlbc-btn-mi')['href'] rescue nil
         buy_url    = box.at_css('.mlbc-btn a.buynow_button')['href'] rescue nil
