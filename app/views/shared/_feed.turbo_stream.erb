@@ -11,6 +11,9 @@
     <% if movie.images.attached? %>
       <%= image_tag movie.images.first.variant(resize_to_fill: [900, 500]),
                       class: "img-fluid rounded-0", alt: movie.title %>
+    <% elsif movie.source_image.present? %>
+      <%= image_tag movie.source_image,
+                      class: "img-fluid rounded-0", alt: "Source Image" %>
     <% else %>
       <%= image_tag "placeholder.png",
                       class: "img-fluid rounded-0", alt: "No image" %>

@@ -56,7 +56,20 @@ class MajorScraper
             buy_url: buy_url
         }
     end
+    # binding.pry
+    movies.each do |m|
+        movie = Movie.find_or_initialize_by(title:m[:title])
+        movie.assign_attributes(
+            description: m[:description],
+            category:    m[:category],
+            source_image:m[:image],
+            duration:    m[:duration],
+            release_date:m[:date],
+            source_url:  m[:detail_url]
+        )
+        movie.save!
 
-    movies
+        MovieMetric.find_or_create_by(movie_id: movie.id)
+    end
   end
 end
