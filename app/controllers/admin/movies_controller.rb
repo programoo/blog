@@ -25,7 +25,7 @@ class Admin::MoviesController < Admin::ApplicationController
         parameters: {
           model: "gpt-4.1",
           messages: [
-            { role: "system", content: "You are a helpful assistant that responds only in JSON." },
+            { role: "system", content: "You are a helpful assistant that responds only in JSON and translate to thai language." },
             { role: "system", content: "locked structured: {
   'title': '',
   'year': ,

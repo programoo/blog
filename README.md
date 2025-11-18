@@ -65,3 +65,7 @@ rails db:migrate:reset
 
 sudo -i -u postgres
 psql -U postgres
+
+VISUAL="code --wait" bin/rails credentials:edit
+bin/rails credentials:show
+AIzaSyA2ltJ3TpopH0DVAZ2-o9cKYWM1OTctUd8
