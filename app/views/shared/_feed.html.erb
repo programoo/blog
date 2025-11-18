@@ -1,4 +1,4 @@
-<div class="card shadow-sm mb-4" style="max-width: 680px; width: 100%;">
+<div class="card shadow-sm mb-4" style="max-width: 600px; width: 100%;">
   <!-- Header: Movie Title + Time -->
   <div class="card-body pb-2 d-flex justify-content-between">
     <div>
@@ -7,7 +7,7 @@
     </div>
   </div>
   <!-- Image -->
-  <div class="w-100">
+  <div class="w-100" style="height:600px; overflow:hidden;">
     <% if movie.images.attached? %>
       <%= image_tag movie.images.first.variant(resize_to_fill: [900, 500]),
                       class: "img-fluid rounded-0", alt: movie.title %>
