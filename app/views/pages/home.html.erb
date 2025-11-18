@@ -40,8 +40,8 @@
                 <% end %>
               </div>
               <div class="card-body">
-                <h5 class="card-title fw-bold mb-2"><%= movie.title %></h5>
-                <p class="card-text text-light"><%= movie.description[0..100] + "..." %></p>
+                <h5 class="card-title fw-bold mb-2"><%= movie&.title %></h5>
+                <p class="card-text text-light"><%= "#{movie.description&.slice(0..50)} ..." %></p>
               </div>
             </div>
           <% end %>

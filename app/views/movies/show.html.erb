@@ -49,8 +49,10 @@
     <!-- Right Section: YouTube Video -->
     <div class="col-md-6 mb-4">
       <div class="ratio ratio-16x9">
-        <iframe src="https://www.youtube.com/embed/43R9l7EkJwE" 
-            title="YouTube video" 
+        <% youtube_data = YoutubeSearchService.new(@movie.title).call %>
+        <%= youtube_data %>
+        <iframe src="https://www.youtube.com/embed/<%= youtube_data[:video_id] %>" 
+            title="<%= youtube_data[:title] %>" 
             allowfullscreen>
         </iframe>
       </div>
