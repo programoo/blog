@@ -59,17 +59,31 @@ class MajorScraper
     # binding.pry
     movies.each do |m|
         movie = Movie.find_or_initialize_by(title:m[:title])
+        if !movie.new_record?
+          puts "# old: " + movie.title
+          next
+        end
+
+        puts "# fetching...: " + movie.title
+
+        youtube_data = YoutubeSearchService.new(movie.title).call
+
         movie.assign_attributes(
             description: m[:description],
             category:    m[:category],
             source_image:m[:image],
             duration:    m[:duration],
             release_date:m[:date],
-            source_url:  m[:detail_url]
+            source_url:  m[:detail_url],
+            youtube_thumbnail:  youtube_data[:thumbnail],
+            youtube_title:  youtube_data[:title],
+            video_id:  youtube_data[:video_id],
         )
         movie.save!
 
         MovieMetric.find_or_create_by(movie_id: movie.id)
+
+        break
     end
   end
 end

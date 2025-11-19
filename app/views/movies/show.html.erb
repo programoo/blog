@@ -6,15 +6,15 @@
         <div class="row g-0 h-100">
           <div class="col-6 d-flex align-items-stretch">
             <% if @movie.images.attached? %>
-              <%= image_tag @movie.images.first.variant(resize_to_fill: [900, 500]),
-                      class: "img-fluid rounded-0", alt: @movie.title %>
+              <% image_source = @movie.images.first.variant(resize_to_fill: [900, 500])%>
             <% elsif @movie.source_image.present? %>
-              <%= image_tag @movie.source_image,
-                      class: "img-fluid rounded-0", alt: "Source Image", size: "700x500" %>
+              <% image_source = @movie.source_image %>
             <% else %>
-              <%= image_tag "placeholder.png",
-                      class: "img-fluid rounded-0", alt: "No image" %>
+              <% image_source = "placeholder.png" %>
             <% end %>
+            <div class="w-100" style="height:600px; overflow:hidden; **display: flex; justify-content: center; align-items: center;**">
+              <img class="img-fluid rounded-0" alt="Source Image" src="<%= image_source %>">
+            </div>
           </div>
           <div class="col-6">
             <div class="card-body">
@@ -49,10 +49,8 @@
     <!-- Right Section: YouTube Video -->
     <div class="col-md-6 mb-4">
       <div class="ratio ratio-16x9">
-        <% youtube_data = YoutubeSearchService.new(@movie.title).call %>
-        <%= youtube_data %>
-        <iframe src="https://www.youtube.com/embed/<%= youtube_data[:video_id] %>" 
-            title="<%= youtube_data[:title] %>" 
+        <iframe src="https://www.youtube.com/embed/<%= @movie.video_id %>" 
+            title="<%= @movie.youtube_title %>" 
             allowfullscreen>
         </iframe>
       </div>

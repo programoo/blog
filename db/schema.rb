@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_18_094641) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_18_233815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -73,6 +73,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_18_094641) do
     t.string "duration"
     t.string "category"
     t.boolean "pending_review", default: false, null: false
+    t.text "youtube_thumbnail"
+    t.string "youtube_title"
+    t.string "video_id"
   end
 
   create_table "posts", force: :cascade do |t|

@@ -68,5 +68,3 @@ psql -U postgres
 
 VISUAL="code --wait" bin/rails credentials:edit
 bin/rails credentials:show
-
-AIzaSyA9sWrmirwRJNwwQa945Ukz2ttLW3KxoRY
