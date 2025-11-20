@@ -7,7 +7,7 @@ class YoutubeSearchService
 
   def initialize(movie_title)
     @movie_title = movie_title
-    @api_key = Rails.application.credentials.dig(:google, :youtube_data_v3_api_key)
+    @api_key = ENV["GOOGLE_YOUTUBE_DATA_API_V3_KEY"]
   end
 
   def call

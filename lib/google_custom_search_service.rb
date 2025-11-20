@@ -4,8 +4,8 @@ class GoogleCustomSearchService
   def initialize(query)
     
     @query = query
-    @api_key = Rails.application.credentials.dig(:google, :custom_search_api_key)
-    @cx      = Rails.application.credentials.dig(:google, :custom_search_cx)
+    @api_key = ENV["GOOGLE_CUSTOM_SEARCH_API_KEY"]
+    @cx      = ENV["GOOGLE_CUSTOM_SEARCH_CX_KEY"]
 
     puts "#keys: " + @api_key + ", " + @cx 
     @conn    = Faraday.new(url: BASE_URL) do |faraday|

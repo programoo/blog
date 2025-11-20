@@ -8,6 +8,6 @@
   </p>
   <p>
     <strong>Description:</strong>
-    <%= movie.description[0..100] + "..." %>
+    <%= "#{movie.description&.slice(0..50)}..." %>
   </p>
 </div>

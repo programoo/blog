@@ -68,3 +68,5 @@ psql -U postgres
 
 VISUAL="code --wait" bin/rails credentials:edit
 bin/rails credentials:show
+
+journalctl -u nginx -f
