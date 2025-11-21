@@ -1,0 +1,3 @@
+<%= turbo_stream.update "reply-list-#{ @reply.comment.id }" do %>
+  <%= render "shared/replies", comment: @reply.comment %>
+<% end %>

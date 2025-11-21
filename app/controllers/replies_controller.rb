@@ -25,7 +25,7 @@ class RepliesController < ApplicationController
     @reply.comment_id = params[:comment_id]
     @reply.user_id = params[:user_id]
     respond_to do |format|
-      if @reply.save!
+      if @reply.save
         format.turbo_stream
         format.html { redirect_to @reply, notice: "Reply was successfully created." }
         format.json { render :show, status: :created, location: @reply }
