@@ -1,7 +1,7 @@
 <%= turbo_stream.append "feed-list" do %>
   <% @movies.each do |movie| %>
     <div class="col-12 d-flex justify-content-center mb-4">
-      <%= render "shared/tfeed", movie: movie %>
+      <%= render "shared/feed", movie: movie %>
     </div>
   <% end %>
 <% end %>
