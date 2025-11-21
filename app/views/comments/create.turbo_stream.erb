@@ -1,3 +1,3 @@
-<%= turbo_stream.update "comment-list" do %>
+<%= turbo_stream.update "comment-list-#{ @comment.movie.id }" do %>
   <%= render "shared/comments", movie: @comment.movie %>
 <% end %>
