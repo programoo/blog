@@ -27,6 +27,51 @@
         <i class="bi bi-clock me-1"></i>
         <span><%= time_ago_in_words(comment.created_at) %> ที่ผ่านมา</span>
       </div>
+      <!-- Reply Button -->
+      <button class="btn btn-sm btn-outline-primary" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#reply-<%= comment.id %>" 
+            aria-expanded="false" 
+            aria-controls="reply-<%= comment.id %>">
+        <% if comment.replies.size > 0 %>
+          View <%=  pluralize(comment.replies.size, "reply")   %>
+        <% else %>
+          Reply
+        <% end %>
+      </button>
+      <!-- Reply Form (Collapsed) -->
+      <div class="collapse mt-2" id="reply-<%= comment.id %>">
+        <% comment.replies.order(created_at: :asc).each do |reply| %>
+          <div class="card mb-2 shadow-sm">
+            <div class="card-body">
+            </div>
+            <p class="mb-1">
+              <strong>
+                <% if reply.user.present? %>
+                  <%= reply.user.email %>
+                <% else %>
+                  guest
+                <% end %>
+                :
+              </strong>
+              <%= reply.content %>
+            </p>
+            <div class="d-flex align-items-center text-muted small">
+              <i class="bi bi-clock me-1"></i>
+              <span><%= time_ago_in_words(reply.created_at) %> ที่ผ่านมา</span>
+            </div>
+          </div>
+        <% end %>
+        <%= form_with(model: [ comment, Reply.new ]) do |form| %>
+          <%= hidden_field_tag :user_id, current_user&.id %>
+          <%= hidden_field_tag :comment_id, comment.id %>
+          <div class="mb-2">
+            <%= form.text_area :content, class: "form-control", rows: 2, placeholder: "เขียนคำตอบของคุณ..." %>
+          </div>
+          <%= form.submit "Send", class: "btn btn-primary btn-sm" %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :replies
   resources :feeds
   resources :user_likes
   resources :movie_metrics
@@ -7,7 +8,9 @@ Rails.application.routes.draw do
     resources :movies
   end
   devise_for :users
-  resources :comments
+  resources :comments do
+    resources :replies
+  end
   resources :movies
   get "pages/home"
   resources :posts
