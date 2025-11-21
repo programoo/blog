@@ -54,6 +54,9 @@
             allowfullscreen>
         </iframe>
       </div>
+      <div class="content bg-white flex-grow-1 overflow-auto p-3">
+        <%= @movie.content %>
+      </div>
     </div>
     <div class="card-footer bg-white">
       <%= render "shared/social_panel", movie: @movie %>

@@ -73,6 +73,6 @@ class MoviesController < ApplicationController
     end
 
     def movie_params
-      params.expect(movie: [ :title, :description, images: [] ])
+      params.expect(movie: [:content, :title, :description, images: [] ])
     end
 end

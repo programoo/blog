@@ -21,8 +21,7 @@ class Admin::MoviesController < Admin::ApplicationController
   # GET /movies/1/edit
   def edit
     client = OpenAI::Client.new
-    response = client.chat(
-        parameters: {
+    chat_params =  {
           model: "gpt-4.1",
           messages: [
             { role: "system", content: "You are a helpful assistant that responds only in JSON and translate to thai language." },
@@ -54,7 +53,7 @@ class Admin::MoviesController < Admin::ApplicationController
           ], # Required.
           temperature: 0
       }
-    )
+    # response = client.chat(parameters: chat_params)
     puts JSON.pretty_generate(response)
     # puts response.dig("choices", 0, "message", "content")
   end
@@ -106,6 +105,6 @@ class Admin::MoviesController < Admin::ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movie_params
-      params.expect(movie: [ :title, :description, images: [] ])
+      params.expect(movie: [ :content, :title, :description, images: [] ])
     end
 end

@@ -16,6 +16,10 @@
     <%= form.text_field :title, class: "form-control", placeholder: "Enter movie title" %>
   </div>
   <div class="mb-3">
+    <%= form.label :content %>
+    <%= form.rich_textarea :content %>
+  </div>
+  <div class="mb-3">
     <%= form.label :description, class: "form-label" %>
     <%= form.text_area :description, class: "form-control", rows: 5, placeholder: "Enter movie description" %>
   </div>
