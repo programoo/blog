@@ -1,0 +1,53 @@
+<div class="modal fade" id="commentsModal-<%= movie.id %>" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= movie.title %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body mt-0 pt-0">
+        <%= render "shared/feed_content", movie: movie, show_title: false %>
+        <!-- Footer buttons like Facebook -->
+        <div class="card-footer bg-white">
+          <%= render "shared/actions_panel", movie: movie %>
+        </div>
+        <!-- Comment / Reply Panel -->
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+            <%= form_with(model: [ movie, Comment.new ], local: true) do |form| %>
+              <div class="mb-3">
+                <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "แสดงความคิดเห็นของคุณ..." %>
+              </div>
+              <%= hidden_field_tag :user_id, current_user&.id %>
+              <%= form.submit "Reply", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+        <!-- Existing replies -->
+        <div>
+          <% movie.comments.order(created_at: :desc).each do |comment| %>
+            <div class="card mb-2 shadow-sm">
+              <div class="card-body">
+                <p class="mb-1">
+                  <strong>
+                    <% if comment.user.present? %>
+                      <%= comment.user.email %>
+                    <% else %>
+                      guest
+                    <% end %>
+                    :
+                  </strong>
+                  <%= comment.content %>
+                </p>
+                <div class="d-flex align-items-center text-muted small">
+                  <i class="bi bi-clock me-1"></i>
+                  <span><%= time_ago_in_words(comment.created_at) %> ที่ผ่านมา</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
