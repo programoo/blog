@@ -26,6 +26,7 @@ class RepliesController < ApplicationController
     @reply.user_id = params[:user_id]
     respond_to do |format|
       if @reply.save
+        @reply.comment.movie.movie_metric.increment!(:comments_count)
         format.turbo_stream
         format.html { redirect_to @reply, notice: "Reply was successfully created." }
         format.json { render :show, status: :created, location: @reply }
