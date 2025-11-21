@@ -3,9 +3,9 @@ class MoviesController < ApplicationController
 
   def index
     if params[:query].present?
-      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc)
     else
-      @searched_movies = Movie.order(created_at: :desc)
+      @searched_movies = Movie.order(updated_at: :desc)
     end
 
     @pagy, @movies = pagy(@searched_movies, limit: 10)
@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie.movie_metric.increment!(:views_count)
+    @movie.touch
     puts "SHOW WAS CALLED DURING THIS PERIOD " + @movie.title
   end
 

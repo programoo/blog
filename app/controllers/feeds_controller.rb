@@ -4,9 +4,9 @@ class FeedsController < ApplicationController
   # GET /feeds or /feeds.json
   def index
     if params[:query].present?
-      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc)
     else
-      @searched_movies = Movie.order(created_at: :desc)
+      @searched_movies = Movie.order(updated_at: :desc)
     end
 
     @pagy, @movies = pagy(@searched_movies, limit: 3)
