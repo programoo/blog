@@ -1,9 +1,7 @@
 
   <div id="reply-list-<%= comment.id %>">
     <% comment.replies.order(created_at: :asc).each do |reply| %>
-      <div class="card mb-2 shadow-sm">
-        <div class="card-body">
-        </div>
+      <div class="card shadow-sm m-2 p-2">
         <p class="mb-1">
           <strong>
             <% if reply.user.present? %>
