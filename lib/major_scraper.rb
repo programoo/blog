@@ -37,6 +37,10 @@ class MajorScraper
 
         category = box.at_css('.mlbc-cate')&.text&.strip.squish
 
+        if category.include?("เพลง")
+          next
+        end
+
         sound = box.at_css('.mlbc-sound')&.text&.strip.squish
 
         date = box.at_css('.mlb-date')&.text&.strip.squish

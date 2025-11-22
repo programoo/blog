@@ -3,19 +3,23 @@ class Admin::MoviesController < Admin::ApplicationController
 
   def index
     if params[:query].present?
-      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      @searched_movies = Movie.where("title ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc)
     else
-      @searched_movies = Movie.order(created_at: :desc)
+      @searched_movies = Movie.order(updated_at: :desc)
     end
 
     @pagy, @movies = pagy(:offset, @searched_movies, limit: 10)
   end
 
-    def fetch
+  def fetch
     puts "#### Calling fetch in admin"
-    MajorScraper.new.fetch_movie
-  end
 
+    MajorScraper.new.fetch_movie
+    @movies = Movie.order(updated_at: :desc)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
 
   def show
   end

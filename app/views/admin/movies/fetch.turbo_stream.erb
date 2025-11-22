@@ -1,0 +1,5 @@
+<%= turbo_stream.update "admin-movie-list" do %>
+  <% Movie.order(updated_at: :desc).each do |movie| %>
+    <%= render movie %>
+  <% end %>
+<% end %>

@@ -20,7 +20,6 @@ class MoviesController < ApplicationController
   def show
     @movie.movie_metric.increment!(:views_count)
     @movie.touch
-    puts "SHOW WAS CALLED DURING THIS PERIOD " + @movie.title
   end
 
   def new
