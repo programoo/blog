@@ -1,0 +1,36 @@
+<% images = movie.images.attached? ? movie.images : [] %>
+<div id="movieCarousel" class="carousel slide col-6" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% if images.any? %>
+      <% images.each_with_index do |img, index| %>
+        <% variant = img.variant(resize_to_fill: [900, 500]).processed %>
+        <% image_source = Rails.application.routes.url_helpers.rails_representation_url(
+          variant,
+          host: request.base_url,
+          only_path: false
+        ) %>
+        <div class="carousel-item <%= "active" if index == 0 %>">
+          <div class="w-100" style="overflow:hidden; display:flex; justify-content:center; align-items:center;">
+            <img class="img-fluid rounded-0" src="<%= image_source %>">
+          </div>
+        </div>
+      <% end %>
+    <% elsif movie.source_image.present? %>
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="<%= movie.source_image %>">
+      </div>
+    <% else %>
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="<%= asset_url("placeholder.png") %>">
+      </div>
+    <% end %>
+  </div>
+  <% if images.size > 1 %>
+    <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  <% end %>
+</div>

@@ -4,19 +4,7 @@
     <div class="col-md-6 mb-4">
       <div class="card shadow-sm">
         <div class="row g-0 h-100">
-          <div class="col-6 d-flex align-items-stretch">
-            <% if @movie.images.attached? %>
-              <% variant = @movie.images.first.variant(resize_to_fill: [900, 500]).processed %>
-              <% image_source = Rails.application.routes.url_helpers.rails_representation_url(variant, host: request.base_url, only_path: false)%>
-            <% elsif @movie.source_image.present? %>
-              <% image_source = @movie.source_image %>
-            <% else %>
-              <% image_source = image_source = asset_url("placeholder.png") %>
-            <% end %>
-            <div class="w-100" style="height:600px; overflow:hidden; **display: flex; justify-content: center; align-items: center;**">
-              <img class="img-fluid rounded-0" alt="Source Image" src="<%= image_source %>">
-            </div>
-          </div>
+          <%= render 'image_carousel', movie: @movie %>
           <div class="col-6">
             <div class="card-body">
               <h2 class="card-title mb-3 fw-bold text-primary"><%= @movie.title %></h2>
