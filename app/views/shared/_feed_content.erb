@@ -9,21 +9,57 @@
 <!-- Image -->
 <%= link_to movie_path(movie), data: { turbo: false } do %>
   <div class="col-12 d-flex align-items-stretch">
+
+    <% # Collect all images into an array to feed Carousel %>
+    <% images = [] %>
+
     <% if movie.youtube_thumbnail.present? %>
-      <% image_source = movie.youtube_thumbnail %>
-    <% elsif movie.images.attached? %>
-      <% variant = movie.images.first.variant(resize_to_fill: [900, 500]).processed %>
-      <% image_source = Rails.application.routes.url_helpers.rails_representation_url(variant, host: request.base_url, only_path: false)%>
-    <% elsif movie.source_image.present? %>
-      <% image_source = movie.source_image %>
-    <% else %>
-      <% image_source = asset_url("placeholder.png") %>
+      <% images << movie.youtube_thumbnail %>
     <% end %>
-    <div class="w-100" style="height:600px; overflow:hidden; **display: flex; justify-content: center; align-items: center;**">
-      <img class="img-fluid rounded-0" alt="Source Image" src="<%= image_source %>" style="width:100%; height:100%; object-fit: cover;">
+
+    <% if movie.images.attached? %>
+      <% movie.images.each do |img| %>
+        <% variant = img.variant(resize_to_fill: [900, 500]).processed %>
+        <% url = Rails.application.routes.url_helpers.rails_representation_url(variant, host: request.base_url, only_path: false) %>
+        <% images << url %>
+      <% end %>
+    <% end %>
+
+    <% if movie.source_image.present? %>
+      <% images << movie.source_image %>
+    <% end %>
+
+    <% if images.empty? %>
+      <% images << asset_url("placeholder.png") %>
+    <% end %>
+
+    <!-- Bootstrap Carousel -->
+    <div id="movieCarousel-<%= movie.id %>" class="carousel slide w-100" data-bs-ride="carousel">
+      <div class="carousel-inner" style="height:600px;">
+
+        <% images.each_with_index do |img, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <div style="height:600px; overflow:hidden; display:flex; justify-content:center; align-items:center;">
+              <img src="<%= img %>" class="d-block w-100" style="height:100%; object-fit:cover;">
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+
+      <!-- Navigation -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel-<%= movie.id %>" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel-<%= movie.id %>" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
     </div>
+
   </div>
 <% end %>
+
 <!-- Description -->
 <div class="card-body">
   <p class="card-text"><%= simple_format(movie.description) %></p>
