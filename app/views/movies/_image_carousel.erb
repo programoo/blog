@@ -1,5 +1,5 @@
 <% images = movie.images.attached? ? movie.images : [] %>
-<div id="movieCarousel" class="carousel slide col-6" data-bs-ride="carousel">
+<div id="movieCarousel" class="carousel slide col-12" data-bs-ride="carousel">
   <div class="carousel-inner">
     <% if images.any? %>
       <% images.each_with_index do |img, index| %>
