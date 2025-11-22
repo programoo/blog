@@ -59,7 +59,7 @@ class MoviesController < ApplicationController
     if params[:movie][:images].present?
       @movie.images.attach(params[:movie][:images])
     end
-
+    
     respond_to do |format|
       if @movie.update(movie_params_without_image)
         format.html { redirect_to admin_movies_path, notice: "Movie was successfully updated." }
@@ -86,6 +86,6 @@ class MoviesController < ApplicationController
     end
 
     def movie_params
-      params.expect(movie: [:content, :title, :description, images: [] ])
+      params.expect(movie: [:content, :video_id, :title, :description, images: [] ])
     end
 end

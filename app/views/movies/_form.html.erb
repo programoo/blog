@@ -16,6 +16,20 @@
     <%= form.text_field :title, class: "form-control", placeholder: "Enter movie title" %>
   </div>
   <div class="mb-3">
+    <%= form.label :video_id, class: "form-label" %>
+    <%= form.text_field :video_id, class: "form-control", placeholder: "Enter embedded video id" %>
+  </div>
+  <div class="mb-3" style="max-width: 500px; margin:auto;">
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/<%= movie.video_id %>" 
+            title="<%= @movie.youtube_title %>" 
+            allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      >
+      </iframe>
+    </div>
+  </div>
+  <div class="mb-3">
     <%= form.label :images, class: "form-label" %>
     <%= form.file_field :images, multiple: true, direct_upload: true, class: "form-control" %>
     <% if movie.images.attached? %>
