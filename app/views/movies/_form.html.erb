@@ -15,9 +15,16 @@
     <%= form.label :title, class: "form-label" %>
     <%= form.text_field :title, class: "form-control", placeholder: "Enter movie title" %>
   </div>
-  <div class="mb-3">
-    <%= form.label :video_id, class: "form-label" %>
-    <%= form.text_field :video_id, class: "form-control", placeholder: "Enter embedded video id" %>
+  <div class="mb-3 col-12 d-flex" >
+    <div class="mb-3 col-2">
+      <%= form.label :video_id, class: "form-query" %>
+      <%= form.text_field :video_id, class: "form-control", placeholder: "Enter embedded video id" %>
+    </div>
+    <div class="mb-3 col-2">
+      <%= link_to "https://www.youtube.com/results?search_query=#{movie.title}" , target: "_blank", rel: "noopener" do %>
+        <p><%= "Query: #{movie.title}" %></p>
+      <% end %>
+    </div>
   </div>
   <div class="mb-3" style="max-width: 500px; margin:auto;">
     <div class="ratio ratio-16x9">
