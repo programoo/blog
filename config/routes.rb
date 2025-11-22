@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     get "dashboard/index"
     resources :movies
   end
-  devise_for :users
   resources :comments do
     resources :replies
   end
@@ -23,6 +22,9 @@ Rails.application.routes.draw do
     resources :movies
   end
 
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

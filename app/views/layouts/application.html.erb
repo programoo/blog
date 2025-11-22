@@ -35,14 +35,11 @@
     <div class="container-fluid" style="padding: 0;">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <% if !current_user || current_user&.admin %>
+          <% if !current_user %>
             <a class="navbar-brand" href="<%= root_path %>">Home</a>
           <% end %>
-          <a class="navbar-brand" href="<%= movies_path %>">Movies</a>
           <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
-          <% if current_user&.admin %>
-            <a class="navbar-brand" href="<%= admin_movies_path %>">Admin Panel</a>
-          <% end %>
+            <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
           <div class="ms-auto d-flex">
             <% if current_user.present? %>
               <!-- Dropdown for Settings -->
