@@ -71,17 +71,14 @@ class MajorScraper
         puts "### fetching...: " + movie.title
 
         youtube_data = YoutubeSearchService.new(movie.title).call
-
+        youtube_data = nil
         movie.assign_attributes(
             description: m.dig(:description),
             category:    m.dig(:category),
             source_image:m.dig(:image),
             duration:    m.dig(:duration),
             release_date:m.dig(:date),
-            source_url:  m.dig(:detail_url),
-            youtube_thumbnail:  youtube_data.dig(:thumbnail),
-            youtube_title:  youtube_data.dig(:title),
-            video_id:  youtube_data.dig(:video_id)
+            source_url:  m.dig(:detail_url)
         )
         if youtube_data.present?
           movie.youtube_thumbnail = youtube_data.dig(:thumbnail)
