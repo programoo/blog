@@ -11,6 +11,12 @@ class Admin::MoviesController < Admin::ApplicationController
     @pagy, @movies = pagy(:offset, @searched_movies, limit: 10)
   end
 
+    def fetch
+    puts "#### Calling fetch in admin"
+    MajorScraper.new.fetch_movie
+  end
+
+
   def show
   end
     # GET /movies/new

@@ -4,6 +4,10 @@
     <%= form.submit "Search", class: 'btn btn-primary' %>
   <% end %>
   <%= link_to 'New Movie', new_admin_movie_path, class: 'btn btn-success' %>
+  <%= link_to "Fetch",
+            fetch_admin_movies_path,
+            data: { turbo_method: :post },
+            class: "btn btn-success" %>
 </div>
 <!-- app/views/movies/index.html.erb -->
 <table class="table-auto border-collapse border border-gray-300 w-full">

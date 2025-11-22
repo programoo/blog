@@ -9,7 +9,7 @@ class MajorScraper
     @url = BASE_URL
   end
 
-  def fetch_movies
+  def fetch_movie
     conn = Faraday.new(url: @url) do |faraday|
         faraday.response :follow_redirects  # This tells Faraday to follow 301/308 automatically
         faraday.adapter Faraday.default_adapter

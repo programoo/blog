@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resources :movie_metrics
   namespace :admin do
     get "dashboard/index"
-    resources :movies
+    resources :movies do
+      collection do
+        post :fetch
+      end
+    end
   end
   resources :comments do
     resources :replies
