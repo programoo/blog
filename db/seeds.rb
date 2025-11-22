@@ -8,18 +8,18 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create(
-  email: "admin@gmail.com",
-  password: "swifiswifi",
-  password_confirmation: "swifiswifi"
-)
+# User.create(
+#   email: "admin@gmail.com",
+#   password: "swifiswifi",
+#   password_confirmation: "swifiswifi"
+# )
 
 
-100.times do
-  movie = Movie.create(
-    title: Faker::Movie.title,
-    description: Faker::Movie.quote
-  )
+# 100.times do
+#   movie = Movie.create(
+#     title: Faker::Movie.title,
+#     description: Faker::Movie.quote
+#   )
 
-  MovieMetric.find_or_create_by!(movie_id: movie.id)
-end
+#   MovieMetric.find_or_create_by!(movie_id: movie.id)
+# end
