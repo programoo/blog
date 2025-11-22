@@ -47,6 +47,14 @@ class MoviesController < ApplicationController
   end
 
   def update
+    # Delete selected images
+    if params[:remove_images]
+      params[:remove_images].each do |image_id|
+        image = @movie.images.find(image_id)
+        image.purge
+      end
+    end
+    
     movie_params_without_image = movie_params.except(:images)
     # Only attach if user actually uploaded something
     if params[:movie][:images].present?
