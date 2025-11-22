@@ -79,9 +79,9 @@ class MajorScraper
             duration:    m[:duration],
             release_date:m[:date],
             source_url:  m[:detail_url],
-            youtube_thumbnail:  youtube_data[:thumbnail],
-            youtube_title:  youtube_data[:title],
-            video_id:  youtube_data[:video_id],
+            youtube_thumbnail:  youtube_data.dig(:thumbnail),
+            youtube_title:  youtube_data.dig(:title),
+            video_id:  youtube_data.dig(:video_id)
         )
         movie.save!
 
