@@ -12,7 +12,8 @@
     <% if movie.youtube_thumbnail.present? %>
       <% image_source = movie.youtube_thumbnail %>
     <% elsif movie.images.attached? %>
-      <% image_source = movie.images.first.variant(resize_to_fill: [900, 500])%>
+      <% variant = movie.images.first.variant(resize_to_fill: [900, 500]).processed %>
+      <% image_source = Rails.application.routes.url_helpers.rails_representation_url(variant, host: request.base_url, only_path: false)%>
     <% elsif movie.source_image.present? %>
       <% image_source = movie.source_image %>
     <% else %>
