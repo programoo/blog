@@ -9,6 +9,14 @@
             <%= f.email_field :email, autofocus: true, class: "form-control" %>
           </div>
           <div class="mb-3">
+            <%= f.label :first_name, class: "form-label" %><br />
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :last_name, class: "form-label" %><br />
+            <%= f.text_field :last_name, autocomplete: "family-name", class: "form-control" %>
+          </div>
+          <div class="mb-3">
             <%= f.label :password, class: "form-label" %>
             <% if @minimum_password_length %>
               <small class="text-muted">(minimum <%= @minimum_password_length %> characters)</small>
