@@ -4,7 +4,7 @@
     <% if !user_signed_in? %>
       <h2 class="display-4 fw-bold mb-3">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก1</h2>
     <% else %>
-      <h2 class="display-4 fw-bold mb-3">สวัสดี <%= current_user.first_name + " " + current_user.last_name %></h2>
+      <h2 class="display-4 fw-bold mb-3">สวัสดี <%= "#{current_user.first_name} #{current_user.last_name}"%></h2>
     <% end %>
     <p class="text-secondary mb-4 fs-5">
       คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า
