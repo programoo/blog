@@ -21,16 +21,25 @@ class UserLikesController < ApplicationController
 
   # POST /user_likes or /user_likes.json
   def create
-    @user_like = UserLike.new(user_like_params)
-
-    respond_to do |format|
-      if @user_like.save
-        @user_like.movie_metric.increment!(:likes_count)
-        format.html { redirect_to @user_like, notice: "User like was successfully created." }
-        format.json { render :show, status: :created, location: @user_like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user_like.errors, status: :unprocessable_entity }
+    @movie = Movie.find(params.dig(:movie_id))
+    @user_liked = UserLike.find_by(user_id: params.dig(:user_id), movie_id: params.dig(:movie_id))
+    
+    if @user_liked.present?
+      @user_liked.movie.movie_metric.decrement!(:likes_count)
+      @user_liked.destroy
+      
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      @user_like = UserLike.new(user_like_params)
+      respond_to do |format|
+        if @user_like.save
+          @user_like.movie.movie_metric.increment!(:likes_count)
+          format.turbo_stream
+        else
+          format.turbo_stream
+        end
       end
     end
   end
