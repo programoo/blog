@@ -6,13 +6,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body mt-0 pt-0">
-        <%= render "shared/feed_content", movie: movie, show_title: false %>
-        <!-- Footer buttons like Facebook -->
-        <div class="card-footer bg-white">
-          <%= render "shared/actions_panel", movie: movie %>
-        </div>
-        <!-- Comment / Reply Panel -->
-        <!-- Existing replies -->
         <div id="comment-list-<%= movie.id %>">
           <%= render "shared/comments", movie: movie %>
         </div>
