@@ -22,6 +22,14 @@
     <%= form.label :email %>
     <%= form.text_field :email, class: "form-control" %>
   </div>
+  <div class="mb-3">
+    <%= form.label :first_name, class: "form-label" %><br />
+    <%= form.text_field :first_name, autofocus: true, autocomplete: "given-name", class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :last_name, class: "form-label" %><br />
+    <%= form.text_field :last_name, autocomplete: "family-name", class: "form-control" %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

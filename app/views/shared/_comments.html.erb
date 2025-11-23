@@ -15,11 +15,10 @@
       <p class="mb-1">
         <strong>
           <% if comment.user.present? %>
-            <%= comment.user.email %>
+            <%= render "shared/user_panel", user: comment.user%>
           <% else %>
             guest
           <% end %>
-          :
         </strong>
         <%= comment.content %>
       </p>

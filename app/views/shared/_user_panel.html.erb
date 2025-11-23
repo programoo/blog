@@ -1,0 +1,17 @@
+<% name = [user&.first_name, user&.last_name].compact.join(" ") %>
+<% name = name.blank? ? user.email : name %>
+<%= link_to user_path(user), target: "_blank", class: "d-flex align-items-center gap-2 text-decoration-none" do %>
+  <%= image_tag(
+        if user.avatar.attached?
+        user.avatar.variant(resize_to_fill: [30, 30])
+        else
+        "placeholder.png" # put your default image in app/assets/images
+        end,
+        class: "rounded-circle",
+        width: 30,
+        height: 30,
+        alt: "User Avatar"
+    ) %>
+  <span class="text-dark"><%= name %>
+  </span>
+<% end %>
