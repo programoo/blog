@@ -45,7 +45,17 @@
               <!-- Dropdown for Settings -->
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <%= current_user.email %>
+                  <%= image_tag(
+                      if current_user.avatar.attached?
+                      current_user.avatar.variant(resize_to_fill: [30, 30])
+                      else
+                      "placeholder.png" # put your default image in app/assets/images
+                      end,
+                      class: "rounded-circle",
+                      width: 30,
+                      height: 30,
+                      alt: "User Avatar"
+                  ) %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
                   <li><a class="dropdown-item" href="<%= user_path(current_user) %>">Profile</a></li>
