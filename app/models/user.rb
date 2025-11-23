@@ -6,4 +6,13 @@ class User < ApplicationRecord
   has_many :user_likes, dependent: :destroy
   has_many :liked_movies, through: :user_likes, source: :movie
   has_one_attached :avatar
+
+  def get_display_name
+    temp_display_name = "#{first_name} #{last_name}"
+    if temp_display_name.blank?
+      return email
+    else
+      return temp_display_name
+    end
+  end
 end

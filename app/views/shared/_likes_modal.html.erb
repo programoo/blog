@@ -22,7 +22,7 @@
                   height: 30,
                   alt: "User Avatar"
                 ) %>
-                <span class="text-dark"><%= user_like.user.email %></span>
+                <span class="text-dark"><%= user_like.user.get_display_name %></span>
               <% end %>
             </div>
           <% end %>
