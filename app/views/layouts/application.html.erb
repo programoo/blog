@@ -39,7 +39,7 @@
             <a class="navbar-brand" href="<%= root_path %>">Home</a>
           <% end %>
           <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
-            <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
+          <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
           <div class="ms-auto d-flex">
             <% if current_user.present? %>
               <!-- Dropdown for Settings -->
@@ -48,8 +48,7 @@
                   <%= current_user.email %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
-                  <li><a class="dropdown-item" href="<%= "#" %>">Profile</a></li>
-                  <li><a class="dropdown-item" href="<%= "#" %>">Roles</a></li>
+                  <li><a class="dropdown-item" href="<%= user_path(current_user) %>">Profile</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li>
                     <%= button_to "ออกจากระบบ", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -57,7 +56,7 @@
                 </ul>
               </div>
             <% else %>
-              <a class="navbar-brand" href="<%= admin_movies_path %>">เข้าสู่ระบบ</a>
+              <a class="navbar-brand" href="<%= user_session_path %>">เข้าสู่ระบบ</a>
             <% end %>
           </div>
         </div>

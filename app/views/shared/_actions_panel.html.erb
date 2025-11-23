@@ -1,23 +1,30 @@
-<div class="d-flex text-center">
-  <% disable_buttons = current_user.present? ? false : true %>
-  <%= form_with url: user_likes_path, method: :post, class: "flex-fill me-2" do |f| %>
-    <%= f.hidden_field :movie_id, value: movie.id %>
-    <%= f.hidden_field :user_id, value: current_user&.id %>
-    <button type="submit" class="btn btn-light w-100 <%= 'disabled' if disable_buttons %>">
-      <% @liked = UserLike.find_by(user_id: current_user.try(:id), movie_id: movie.try(:id)).try(:present?) %>
-      <i class="bi bi-hand-thumbs-up<%= "-fill" if @liked %>"></i>
-      <a data-bs-toggle="modal" data-bs-target="#like-modal-137" class="px-2">
-        <%= movie.movie_metric.likes_count %>
-      </a>
-    </button>
-  <% end %>
-  <button class="btn btn-light flex-fill me-2 <%= 'disabled' if disable_buttons %>"
+<div class="d-flex flex-column text-center col-12">
+  <div class="actions-panel d-flex">
+    <% disable_buttons = current_user.present? ? false : true %>
+    <%= form_with url: user_likes_path, method: :post, class: "flex-fill me-2" do |f| %>
+      <%= f.hidden_field :movie_id, value: movie.id %>
+      <%= f.hidden_field :user_id, value: current_user&.id %>
+      <button type="submit" class="btn btn-light w-100 <%= 'disabled' if disable_buttons %>">
+        <% @liked = UserLike.find_by(user_id: current_user.try(:id), movie_id: movie.try(:id)).try(:present?) %>
+        <i class="bi bi-hand-thumbs-up<%= "-fill" if @liked %>"></i>
+        <a data-bs-toggle="modal" data-bs-target="#like-modal-137" class="px-2">
+          <%= movie.movie_metric.likes_count %>
+        </a>
+      </button>
+    <% end %>
+    <button class="btn btn-light flex-fill me-2 <%= 'disabled' if disable_buttons %>"
         data-bs-toggle="modal"
         data-bs-target="#commentsModal-<%= movie.id %>">
-    <i class="bi bi-chat-dots"></i> <%= movie.movie_metric.comments_count %>
-  </button>
-  <button class="btn btn-light flex-fill disabled">
-    <i class="bi bi-eye"></i> <%= movie.movie_metric.views_count %>
-  </button>
+      <i class="bi bi-chat-dots"></i> <%= movie.movie_metric.comments_count %>
+    </button>
+    <button class="btn btn-light flex-fill disabled">
+      <i class="bi bi-eye"></i> <%= movie.movie_metric.views_count %>
+    </button>
+  </div>
+  <div class="sigin-advice-layout">
+    <a href="<%= new_user_registration_path %>">
+      <p>เข้าร่วมชุมชนคนรักหนัง คลิกเพื่อสมัครฟรี!</p>
+    </a>
+  </div>
   <%= render "shared/likes_modal", movie: movie %>
 </div>
