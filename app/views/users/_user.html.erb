@@ -3,11 +3,17 @@
     <div class="card-body">
       <div class="d-flex align-items-center mb-3">
         <div class="me-3">
-          <%= image_tag user.avatar.variant(resize_to_fill: [80, 80]),
-              class: "rounded-circle",
-              width: 80,
-              height: 80,
-              alt: "User Avatar" %>
+          <%= image_tag(
+            if user.avatar.attached?
+              user.avatar.variant(resize_to_fill: [80, 80])
+            else
+              "placeholder.png" # put your default image in app/assets/images
+            end,
+            class: "rounded-circle",
+            width: 80,
+            height: 80,
+            alt: "User Avatar"
+          ) %>
         </div>
         <div>
           <h3 class="mb-1"><%= user.email %></h3>

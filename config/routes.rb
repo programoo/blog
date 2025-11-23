@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  # resources :users
   resources :replies
   resources :feeds
   resources :user_likes
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+# Your own UsersController routes
+  resources :users, only: [:index, :show, :edit, :update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

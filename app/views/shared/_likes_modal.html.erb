@@ -11,12 +11,17 @@
           <% user_likes.each do |user_like| %>
             <div class="d-flex mt-2">
               <%= link_to user_path(user_like.user), class: "d-flex align-items-center gap-2 text-decoration-none" do %>
-                <%= image_tag user_like.user.avatar.variant(resize_to_fill: [30, 30]),
+                <%= image_tag(
+                  if user_like.user.avatar.attached?
+                    user_like.user.avatar.variant(resize_to_fill: [30, 30])
+                  else
+                    "placeholder.png" # put your default image in app/assets/images
+                  end,
                   class: "rounded-circle",
                   width: 30,
                   height: 30,
-                  alt: "User Avatar" 
-                %>
+                  alt: "User Avatar"
+                ) %>
                 <span class="text-dark"><%= user_like.user.email %></span>
               <% end %>
             </div>
