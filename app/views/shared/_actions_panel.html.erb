@@ -7,7 +7,7 @@
       <button type="submit" class="btn btn-light w-100 <%= 'disabled' if disable_buttons %>">
         <% @liked = UserLike.find_by(user_id: current_user.try(:id), movie_id: movie.try(:id)).try(:present?) %>
         <i class="bi bi-hand-thumbs-up<%= "-fill" if @liked %>"></i>
-        <a data-bs-toggle="modal" data-bs-target="#like-modal-137" class="px-2">
+        <a data-bs-toggle="modal" data-bs-target="#like-modal-<%= movie.id %>" class="px-2">
           <%= movie.movie_metric.likes_count %>
         </a>
       </button>
