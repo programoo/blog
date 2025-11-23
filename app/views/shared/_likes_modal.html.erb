@@ -9,11 +9,17 @@
         <div id="likes-list-<%= movie.id %>">
           <% user_likes = UserLike.where(movie_id: movie.id)%>
           <% user_likes.each do |user_like| %>
-            <% user_path(user_like.user) %>
-            <%= link_to user_path(user_like.user) do %>
-              <!-- your HTML here -->
-              <p><%= user_like.user.email %></p>
-            <% end %>
+            <div class="d-flex mt-2">
+              <%= link_to user_path(user_like.user), class: "d-flex align-items-center gap-2 text-decoration-none" do %>
+                <%= image_tag user_like.user.avatar.variant(resize_to_fill: [30, 30]),
+                  class: "rounded-circle",
+                  width: 30,
+                  height: 30,
+                  alt: "User Avatar" 
+                %>
+                <span class="text-dark"><%= user_like.user.email %></span>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
