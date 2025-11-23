@@ -1,17 +1,7 @@
 <div id="reply-list-<%= comment.id %>">
   <% comment.replies.order(created_at: :asc).each do |reply| %>
     <div class="card shadow-sm m-2 p-2">
-      <p class="mb-1">
-        <strong>
-          <% if reply.user.present? %>
-            <%= reply.user.email %>
-          <% else %>
-            guest
-          <% end %>
-          :
-        </strong>
-        <%= reply.content %>
-      </p>
+      <%= render "shared/user_panel", user: reply.user %>
       <div class="d-flex align-items-center text-muted small">
         <i class="bi bi-clock me-1"></i>
         <span><%= time_ago_in_words(reply.created_at) %> ที่ผ่านมา</span>
