@@ -21,10 +21,12 @@
       <i class="bi bi-eye"></i> <%= movie.movie_metric.views_count %>
     </button>
   </div>
-  <div class="sigin-advice-layout">
-    <a href="<%= new_user_registration_path %>">
-      <p>เข้าร่วมชุมชนคนรักหนัง คลิกเพื่อสมัครฟรี!</p>
-    </a>
-  </div>
+  <% if !current_user.present? %>
+    <div class="sigin-advice-layout">
+      <a href="<%= new_user_registration_path %>">
+        <p>เข้าร่วมชุมชนคนรักหนัง คลิกเพื่อสมัครฟรี!</p>
+      </a>
+    </div>
+  <% end %>
   <%= render "shared/likes_modal", movie: movie %>
 </div>
