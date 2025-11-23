@@ -2,7 +2,7 @@
   <!-- Header: Movie Title + Time -->
   <%= render "shared/feed_content", movie: movie, show_title: true %>
   <!-- Footer buttons like Facebook -->
-  <div class="card-footer bg-white">
+  <div class="card-footer bg-white" id="social-panel-list-<%= movie.id %>">
     <%= render "shared/social_panel", movie: movie %>
   </div>
 </div>
