@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :liked_movies, through: :user_likes, source: :movie
   has_one_attached :avatar
   has_many :ratings, dependent: :destroy
+  has_rich_text :bio
 
   def get_display_name
     temp_display_name = "#{first_name} #{last_name}"

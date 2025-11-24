@@ -23,6 +23,9 @@
     <%= form.text_field :email, class: "form-control" %>
   </div>
   <div class="mb-3">
+    <%= form.rich_textarea :bio, rows: 8, placeholder: "คำแนะนำตัวของคุณพร้อมใส่รูปภาพประกอบได้..." %>
+  </div>
+  <div class="mb-3">
     <%= form.label :first_name, class: "form-label" %><br />
     <%= form.text_field :first_name, autofocus: true, autocomplete: "given-name", class: "form-control" %>
   </div>
