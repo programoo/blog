@@ -3,7 +3,7 @@
   <div class="card-body">
     <%= form_with(model: [ movie, Comment.new ]) do |form| %>
       <div class="mb-3">
-        <%= form.text_area :content, class: "form-control", rows: 3, placeholder: "แสดงความคิดเห็นของคุณ..." %>
+        <%= form.rich_textarea :criticism, rows: 8, placeholder: "แสดงความคิดเห็นของคุณ..." %>
       </div>
       <%= hidden_field_tag :user_id, current_user&.id %>
       <%= form.submit "Reply", class: "btn btn-primary" %>
@@ -21,7 +21,7 @@
             guest
           <% end %>
         </strong>
-        <%= comment.content %>
+        <%= comment.criticism %>
       </p>
       <div class="d-flex align-items-center text-muted small" style="font-size: 10px;">
         <i class="bi bi-clock me-1"></i>
