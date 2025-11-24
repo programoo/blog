@@ -9,7 +9,7 @@ class Notification < ApplicationRecord
     broadcast_prepend_later_to "notifications_#{user_id}"
 
     # 2. Update the counter badge
-    broadcast_replace_later_to "notifications_#{user_id}",
+    broadcast_update_later_to "notifications_#{user_id}",
       target: "notification-count",
       partial: "notifications/count",
       locals: { user: user }

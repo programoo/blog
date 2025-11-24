@@ -46,7 +46,7 @@
               <div id="navbar-notifications">
                 <%= link_to notifications_path, class: "text-decoration-none" do %>
                   <span id="notification-count">
-                    <%= Notification.where(user: current_user, read: false).count %>
+                    <%= render "notifications/count", user: current_user %>
                   </span>
                 <% end %>
               </div>

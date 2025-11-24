@@ -1,1 +1,3 @@
-<%= Notification.where(user: user, read: false).count %>
+<i class="bi bi-bell-fill"></i>
+<% puts "############: #{Notification.where(user: user, read: false).size }" %>
+<%= Notification.where(user: user, read: false).size %> 
