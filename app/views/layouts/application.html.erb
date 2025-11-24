@@ -42,11 +42,9 @@
           <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
           <div class="ms-auto d-flex">
             <% if current_user.present? %>
-              <!-- Dropdown for Settings -->
+              <%= turbo_stream_from "notifications_#{current_user.id}" %>
               <div id="navbar-notifications">
-                <%= turbo_stream_from "notifications_#{current_user.id}" %>
                 <%= link_to notifications_path, class: "text-decoration-none" do %>
-                  🔔
                   <span id="notification-count">
                     <%= Notification.where(user: current_user, read: false).count %>
                   </span>
