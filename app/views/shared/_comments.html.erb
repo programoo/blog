@@ -1,3 +1,4 @@
+<%= render "shared/rating", movie: movie %>
 <div class="card shadow-sm mb-3">
   <div class="card-body">
     <%= form_with(model: [ movie, Comment.new ]) do |form| %>
