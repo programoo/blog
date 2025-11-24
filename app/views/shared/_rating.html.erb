@@ -2,6 +2,7 @@
      data-controller="rating"
      data-rating-user-value="<%= movie.rating_for(current_user) || 0 %>">
   <div class="d-flex align-items-center gap-2">
+    ให้คะแนน: 
     <div class="stars d-flex" data-rating-target="stars">
       <% 5.times do |i| %>
         <% star_value = i + 1 %>
@@ -15,7 +16,7 @@
               style="line-height: 1;">
             <span class="star"
               data-value="<%= star_value %>"
-              style="font-size: 1.8rem; cursor: pointer;">
+              style="font-size: 4rem; cursor: pointer;">
               <%= star_value <= (movie.rating_for(current_user) || 0) ? "★" : "☆" %>
             </span>
           </button>
