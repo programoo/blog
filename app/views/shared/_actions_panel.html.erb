@@ -20,6 +20,7 @@
     <button class="btn btn-light flex-fill disabled">
       <i class="bi bi-eye"></i> <%= movie.movie_metric.views_count %>
     </button>
+    <%= render "shared/rating", movie: movie %>
   </div>
   <% if !current_user.present? %>
     <div class="sigin-advice-layout">
@@ -28,6 +29,5 @@
       </a>
     </div>
   <% end %>
-  <%= render "shared/rating", movie: movie %>
   <%= render "shared/likes_modal", movie: movie %>
 </div>
