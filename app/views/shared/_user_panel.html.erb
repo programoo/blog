@@ -1,5 +1,6 @@
-<%= link_to user_path(user), target: "_blank", class: "d-flex align-items-center gap-2 text-decoration-none" do %>
-  <%= image_tag(
+<div class="mb-1 d-flex align-items-center gap-2">
+  <%= link_to user_path(user), target: "_blank", class: "d-inline-flex align-items-center gap-2 text-decoration-none" do %>
+    <%= image_tag(
         if user.avatar.attached?
         user.avatar.variant(resize_to_fill: [30, 30])
         else
@@ -10,6 +11,13 @@
         height: 30,
         alt: "User Avatar"
     ) %>
-  <span class="text-dark fw-bold"><%= user.get_display_name %>
-  </span>
-<% end %>
+    <span class="text-dark fw-bold">
+      <%= user.get_display_name %>
+    </span>
+  <% end %>
+  <% if movie.rating_for(user) %>
+    <span class="star text-decoration-none" style="font-size: 0.8rem;">
+      ★  <%= movie.rating_for(user) %>
+    </span>
+  <% end %>
+</div>

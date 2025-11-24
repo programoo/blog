@@ -14,13 +14,11 @@
   <div class="card mb-2 shadow-sm">
     <div class="card-body">
       <p class="mb-1">
-        <strong>
-          <% if comment.user.present? %>
-            <%= render "shared/user_panel", user: comment.user%>
-          <% else %>
-            guest
-          <% end %>
-        </strong>
+        <% if comment.user.present? %>
+          <%= render "shared/user_panel", user: comment.user, movie: movie %>
+        <% else %>
+          guest
+        <% end %>
         <%= comment.criticism %>
       </p>
       <div class="d-flex align-items-center text-muted small" style="font-size: 10px;">

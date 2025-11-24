@@ -1,7 +1,7 @@
 <div id="reply-list-<%= comment.id %>">
   <% comment.replies.order(created_at: :asc).each do |reply| %>
     <div class="card shadow-sm m-2 p-2">
-      <%= render "shared/user_panel", user: reply.user %>
+      <%= render "shared/user_panel", user: reply.user, movie: comment.movie %>
       <%= reply.content %>
       <div class="d-flex align-items-center text-muted small" style="font-size: 10px;">
         <i class="bi bi-clock me-1"></i>
