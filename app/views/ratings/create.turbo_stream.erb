@@ -1,0 +1,3 @@
+<%= turbo_stream.update "movie-rating-#{@movie.id}" do %>
+  <%= render "shared/rating", movie: @movie %>
+<% end %>

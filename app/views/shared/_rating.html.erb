@@ -1,0 +1,29 @@
+<div id="movie-rating-<%= movie.id %>"
+     data-controller="rating"
+     data-rating-user-value="<%= movie.rating_for(current_user) || 0 %>">
+  <div class="d-flex align-items-center gap-2">
+    <div class="stars d-flex" data-rating-target="stars">
+      <% 5.times do |i| %>
+        <% star_value = i + 1 %>
+        <%= form_with url: movie_rating_path(movie),
+                  method: :post,
+                  data: { turbo_stream: true },
+                  class: "m-0 p-0" do |f| %>
+          <%= f.hidden_field :value, value: star_value %>
+          <button type="submit"
+              class="btn p-0 border-0 bg-transparent star-button"
+              style="line-height: 1;">
+            <span class="star"
+              data-value="<%= star_value %>"
+              style="font-size: 1.8rem; cursor: pointer;">
+              <%= star_value <= (movie.rating_for(current_user) || 0) ? "★" : "☆" %>
+            </span>
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+    <small class="text-muted">
+      Avg: <%= movie.average_rating %> ★
+    </small>
+  </div>
+</div>

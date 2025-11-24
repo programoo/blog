@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # resources :users
   resources :replies
   resources :feeds
   resources :user_likes
@@ -26,13 +25,25 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index"
     resources :movies
   end
-
+  #user authen, sign up feature
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
 
-# Your own UsersController routes
+  #user profile feature
   resources :users, only: [:index, :show, :edit, :update]
+
+  resources :movies, only: [:show, :index] do
+    resource :rating, only: [:create], controller: 'ratings'
+  end
+  # config/routes.rb
+  resources :movies do
+    resource :rating, only: [:create], controller: "ratings"
+  end
+
+
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
