@@ -27,6 +27,8 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         @reply.comment.movie.movie_metric.increment!(:comments_count)
+        create_notification_for(@reply.comment)
+
         format.turbo_stream
         format.html { redirect_to @reply, notice: "Reply was successfully created." }
         format.json { render :show, status: :created, location: @reply }
@@ -69,5 +71,13 @@ class RepliesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reply_params
       params.expect(reply: [:content ])
+    end
+
+    def create_notification_for(comment)
+      Notification.create!(
+        user: comment.user,   # owner of the post receives notification
+        notifiable: comment,
+        message: "#{comment.user.first_name} commented on your post"
+      )
     end
 end

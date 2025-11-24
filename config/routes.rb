@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "notifications/index"
   resources :replies
   resources :feeds
   resources :user_likes
@@ -41,9 +42,7 @@ Rails.application.routes.draw do
     resource :rating, only: [:create], controller: "ratings"
   end
 
-
-
-
+  resources :notifications
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

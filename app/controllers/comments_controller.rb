@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         @comment.movie.movie_metric.increment!(:comments_count)
+        create_notification_for(@comment)
         format.turbo_stream
         format.html { redirect_to @comment.movie, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
@@ -70,5 +71,13 @@ class CommentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def comment_params
       params.expect(comment: [ :content, :criticism ])
+    end
+
+    def create_notification_for(comment)
+      Notification.create!(
+        user: comment.post.user,   # owner of the post receives notification
+        notifiable: comment,
+        message: "#{comment.user.first_name} commented on your post"
+      )
     end
 end

@@ -43,6 +43,15 @@
           <div class="ms-auto d-flex">
             <% if current_user.present? %>
               <!-- Dropdown for Settings -->
+              <div id="navbar-notifications">
+                <%= turbo_stream_from "notifications_#{current_user.id}" %>
+                <%= link_to notifications_path, class: "text-decoration-none" do %>
+                  🔔
+                  <span id="notification-count">
+                    <%= Notification.where(user: current_user, read: false).count %>
+                  </span>
+                <% end %>
+              </div>
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <%= image_tag(

@@ -1,0 +1,5 @@
+<h3>Notifications</h3>
+<%= turbo_stream_from "notifications_#{current_user.id}" %>
+<div id="notifications">
+  <%= render @notifications %>
+</div>
