@@ -1,8 +1,24 @@
-<div class="notification <%= 'bg-secondary' unless notification.read %> p-2 mb-2 rounded">
+<div class="notification p-3 mb-2 rounded shadow-sm 
+            <%= 'bg-light text-dark' unless notification.read %>
+            <%= 'bg-white text-muted' if notification.read %>
+            d-flex align-items-start gap-2 border">
   <% klass = notification.notifiable_type.constantize %>
   <% reply = klass.find(notification.notifiable_id) %>
-  <%= link_to movie_path(reply.comment.movie.id, { reply_element_id: "reply-element-#{reply.id}" }),
-            class: "text-decoration-none" do %>
-    <p><%= "#{notification.message} #{reply.comment.movie.id}" %></p>
+  <!-- Optional icon -->
+  <i class="bi bi-bell-fill fs-5 mt-1"></i>
+  <div class="flex-grow-1">
+    <%= link_to movie_path(reply.comment.movie.id, { reply_element_id: "reply-element-#{reply.id}" }),
+                class: "text-decoration-none" do %>
+      <p class="mb-0 fw-medium">
+        <%= notification.message %>
+        <span class="text-primary">#<%= reply.comment.movie.id %></span>
+      </p>
+    <% end %>
+    <!-- Optional timestamp -->
+    <small class="text-muted"> <%= time_ago_in_words(notification.created_at) %> ago </small>
+  </div>
+  <% unless notification.read %>
+    <!-- unread indicator -->
+    <span class="badge bg-primary rounded-circle ms-2" style="width: 10px; height: 10px;"></span>
   <% end %>
 </div>
