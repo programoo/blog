@@ -1,22 +1,22 @@
-<button type="button"
-        class="btn btn-secondary"
-        id="notificationsPopover"
-        data-bs-toggle="popover"
-        data-bs-html="true"
-        data-bs-placement="left">
-  Notifications
-</button>
-<div id="notifications-content" class="d-none">
-  <% @notifications = Notification.where(user: current_user).order(created_at: :desc).limit(10) %>
-  <%= render @notifications %>
-</div>
-<div id="navbar-notifications">
-  <a href="/notifications" class="position-relative d-inline-flex align-items-center justify-content-center text-decoration-none">
-    <!-- Circular bell button -->
-    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
-         style="width: 40px; height: 40px;">
-      <i class="bi bi-bell-fill text-white fs-5"></i>
-    </div>
-    <%= render "notifications/count", user: current_user%>
-  </a>
+<div class="position-relative" data-controller="panel">
+  <!-- Button -->
+  <button 
+    type="button" 
+    class="btn btn-primary rounded-circle d-inline-flex align-items-center justify-content-center position-relative" 
+    data-action="click->panel#toggle"
+    >
+    <i class="bi bi-bell-fill text-white fs-5"></i>
+  </button>
+  <!-- Panel -->
+  <div 
+    data-panel-target="panel" 
+    class="position-absolute bg-white border rounded shadow p-3 d-none"
+    style="min-width: 400px; z-index: 1050; right: -200px; top: 100%;"
+  >
+    <p>Notifications</p>
+    <% @notifications = Notification.where(user: current_user).order(created_at: :desc) %>
+    <%= render @notifications %>
+  </div>
+  <!-- Notification count -->
+  <%= render "notifications/count", user: current_user %>
 </div>
