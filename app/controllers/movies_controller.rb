@@ -20,6 +20,7 @@ class MoviesController < ApplicationController
   def show
     @movie.movie_metric.increment!(:views_count)
     @movie.touch
+    binding.pry
   end
 
   def new

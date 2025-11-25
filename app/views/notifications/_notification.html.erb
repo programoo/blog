@@ -4,18 +4,32 @@
             d-flex align-items-start gap-2 border">
   <% klass = notification.notifiable_type.constantize %>
   <% reply = klass.find(notification.notifiable_id) %>
+  <% user  = reply.user %>
   <!-- Optional icon -->
   <i class="bi bi-bell-fill fs-5 mt-1"></i>
   <div class="flex-grow-1">
     <%= link_to movie_path(reply.comment.movie.id, { reply_element_id: "reply-element-#{reply.id}" }),
                 class: "text-decoration-none" do %>
-      <p class="mb-0 fw-medium">
-        <%= notification.message %>
-        <span class="text-primary">#<%= reply.comment.movie.id %></span>
-      </p>
+      <%= image_tag(
+        if user.avatar.attached?
+        user.avatar.variant(resize_to_fill: [30, 30])
+        else
+        "placeholder.png" # put your default image in app/assets/images
+        end,
+        class: "rounded-circle",
+        width: 30,
+        height: 30,
+        alt: "User Avatar"
+    ) %>
+      <span class="text-dark fw-bold">
+        <%= user.get_display_name %>
+      </span>
+      <span class="text-dark">
+        <%= "commented on your post." %>
+      </span>
     <% end %>
     <!-- Optional timestamp -->
-    <small class="text-muted"> <%= time_ago_in_words(notification.created_at) %> ago </small>
+    <small class="text-muted d-block"> <%= time_ago_in_words(notification.created_at) %> ago </small>
   </div>
   <% unless notification.read %>
     <!-- unread indicator -->
