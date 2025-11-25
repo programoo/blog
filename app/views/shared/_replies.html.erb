@@ -1,6 +1,6 @@
 <div id="reply-list-<%= comment.id %>">
   <% comment.replies.order(created_at: :asc).each do |reply| %>
-    <div class="card shadow-sm m-2 p-2">
+    <div class="card shadow-sm m-2 p-2" id="reply-element-<%= reply.id %>">
       <%= render "shared/user_panel", user: reply.user, movie: comment.movie %>
       <%= reply.content %>
       <div class="d-flex align-items-center text-muted small" style="font-size: 10px;">
@@ -14,7 +14,7 @@
     <%= hidden_field_tag :comment_id, comment.id %>
     <div class="mb-2 ps-2">
       <%= form.text_area :content, class: "form-control mb-1", rows: 2, placeholder: "เขียนคำตอบของคุณ..." %>
-      <%= form.submit "Send", class: "btn btn-primary btn-sm" %>
+      <%= form.submit "Reply", class: "btn btn-primary btn-sm" %>
     </div>
   <% end %>
 </div>

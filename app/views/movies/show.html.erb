@@ -46,7 +46,10 @@
       </div>
     </div>
     <div class="card-footer bg-white" id="social-panel-list-<%= @movie.id %>">
-      <%= render "shared/social_panel", movie: @movie %>
+      <%= render "shared/actions_panel", movie: @movie %>
+    </div>
+    <div id="comment-list-<%= @movie.id %>">
+      <%= render "shared/comments", movie: @movie %>
     </div>
   </div>
 </div>
