@@ -1,2 +1,8 @@
-<% puts "############: #{Notification.where(user: user, read: false).size }" %>
-<%= Notification.where(user: user, read: false).size %> 
+<div id="notification-count">
+  <% unread_count =  Notification.where(user: user, read: false).size %>
+  <% if unread_count > 0 %>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      <%= unread_count%>
+    </span>
+  <% end %>
+</div>

@@ -1,6 +1,3 @@
 <div class="notification <%= 'bg-light' unless notification.read %> p-2 mb-2 rounded">
   <%= notification.message %>
 </div>
-<%= turbo_stream.update "notification-count" do %>
-  <%= Notification.where(user: notification.user, read: false).count %>
-<% end %>
