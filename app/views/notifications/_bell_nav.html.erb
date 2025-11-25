@@ -1,4 +1,15 @@
-<%= turbo_stream_from "notifications_#{current_user.id}" %>
+<button type="button"
+        class="btn btn-secondary"
+        id="notificationsPopover"
+        data-bs-toggle="popover"
+        data-bs-html="true"
+        data-bs-placement="left">
+  Notifications
+</button>
+<div id="notifications-content" class="d-none">
+  <% @notifications = Notification.where(user: current_user).order(created_at: :desc).limit(10) %>
+  <%= render @notifications %>
+</div>
 <div id="navbar-notifications">
   <a href="/notifications" class="position-relative d-inline-flex align-items-center justify-content-center text-decoration-none">
     <!-- Circular bell button -->

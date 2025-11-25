@@ -42,6 +42,7 @@
           <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
           <div class="ms-auto d-flex gap-3">
             <% if current_user.present? %>
+              <%= turbo_stream_from "notifications_#{current_user.id}" %>
               <%= render "notifications/bell_nav" %>
               <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
