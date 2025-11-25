@@ -75,7 +75,7 @@ class CommentsController < ApplicationController
 
     def create_notification_for(comment)
       Notification.create!(
-        user: comment.post.user,   # owner of the post receives notification
+        user: comment.user,   # owner of the post receives notification
         notifiable: comment,
         message: "#{comment.user.first_name} commented on your post"
       )
