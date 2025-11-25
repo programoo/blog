@@ -21,7 +21,11 @@ class MoviesController < ApplicationController
     @movie.movie_metric.increment!(:views_count)
     @movie.touch
 
-    reply_element_id = params[:reply_element_id]
+    if(params[:reply_element_id].present?)
+      notification = Notification.find_by(notifiable_type: "Reply", notifiable_id: params[:reply_element_id])
+      notification.update(read: true)
+    end
+    
   end
 
   def new

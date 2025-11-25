@@ -1,12 +1,10 @@
 <div class="notification p-3 mb-2 rounded shadow-sm 
-            <%= 'bg-light text-dark' unless notification.read %>
-            <%= 'bg-white text-muted' if notification.read %>
             d-flex align-items-start gap-2 border">
   <% klass = notification.notifiable_type.constantize %>
   <% reply = klass.find(notification.notifiable_id) %>
   <% user  = reply.user %>
   <!-- Optional icon -->
-  <i class="bi bi-bell-fill fs-5 mt-1" style="color: <%=  %>;"></i>
+  <i class="bi bi-bell-fill fs-5 mt-1" style="color: <%= notification.read ? "lightgrey" : "green"  %>;"></i>
   <div class="flex-grow-1">
     <%= link_to movie_path(reply.comment.movie.id, { reply_element_id: "#{reply.id}" }),
                 class: "text-decoration-none" do %>
