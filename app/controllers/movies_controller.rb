@@ -20,7 +20,8 @@ class MoviesController < ApplicationController
   def show
     @movie.movie_metric.increment!(:views_count)
     @movie.touch
-    binding.pry
+
+    reply_element_id = params[:reply_element_id]
   end
 
   def new

@@ -6,7 +6,7 @@ export default class extends Controller {
     document.addEventListener("turbo:load", () => {
       const targetId = new URLSearchParams(window.location.search).get("reply_element_id")
       if (targetId) {
-        const el = document.getElementById(targetId)
+        const el = document.getElementById("reply-element-" + targetId)
         if (el) el.scrollIntoView({ behavior: "smooth" })
       }
     })

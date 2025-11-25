@@ -1,8 +1,7 @@
 <div id="reply-list-<%= comment.id %>">
   <% comment.replies.order(created_at: :asc).each do |reply| %>
-    <% reply_element_id = "reply-element-#{reply.id}" %>
-    <% fade_out = (params[:reply_element_id] == reply_element_id) %>
-    <div class="card shadow-sm m-2 p-2 <%= "fade-out" if fade_out %>" id="<%= reply_element_id %>">
+    <% fade_out = (params[:reply_element_id].to_i == reply.id) %>
+    <div class="card shadow-sm m-2 p-2 <%= "fade-out" if fade_out %>" id="reply-element-<%= reply.id %>">
       <%= render "shared/user_panel", user: reply.user, movie: comment.movie %>
       <%= reply.content %>
       <div class="d-flex align-items-center text-muted small" style="font-size: 10px;">
