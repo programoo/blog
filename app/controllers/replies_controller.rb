@@ -27,7 +27,7 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         @reply.comment.movie.movie_metric.increment!(:comments_count)
-        create_notification_for(@reply.comment)
+        create_notification_for(@reply)
 
         format.turbo_stream
         format.html { redirect_to @reply, notice: "Reply was successfully created." }
@@ -73,11 +73,11 @@ class RepliesController < ApplicationController
       params.expect(reply: [:content ])
     end
 
-    def create_notification_for(comment)
+    def create_notification_for(reply)
       Notification.create!(
-        user: comment.user,   # owner of the post receives notification
-        notifiable: comment,
-        message: "#{comment.user.first_name} commented on your post"
+        user: reply.comment.user,   # owner of the post receives notification
+        notifiable: reply,
+        message: "#{reply.user.first_name} commented on your post"
       )
     end
 end
