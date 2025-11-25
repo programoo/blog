@@ -1,7 +1,7 @@
 <div class="notification <%= 'bg-secondary' unless notification.read %> p-2 mb-2 rounded">
   <% klass = notification.notifiable_type.constantize %>
   <% reply = klass.find(notification.notifiable_id) %>
-  <%= link_to movie_path(reply.comment.movie.id, anchor: "reply-element-#{reply.id}"),
+  <%= link_to movie_path(reply.comment.movie.id, { anchor: "reply-element-#{reply.id}", reply_element_id: "reply-element-#{reply.id}" }),
             class: "text-decoration-none" do %>
     <p><%= "#{notification.message} #{reply.comment.movie.id}" %></p>
   <% end %>
