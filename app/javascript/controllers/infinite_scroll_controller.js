@@ -12,7 +12,6 @@ export default class extends Controller {
   onScroll() {
     if (this.loading) return
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
-      console.log("####: " + "detected!");
       this.loadMore()
     }
   }

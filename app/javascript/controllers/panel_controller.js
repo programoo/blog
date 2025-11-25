@@ -3,10 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["panel"]
 
-    connect() {
-        console.log("PANEL CONTROLLER CONNECTED #########################");
-    }
-
     toggle(event) {
         event.stopPropagation(); // prevent bubbling
         this.panelTarget.classList.toggle("d-none");

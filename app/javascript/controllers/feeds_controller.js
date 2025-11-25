@@ -13,7 +13,6 @@ export default class extends Controller {
     onScroll() {
         if (this.loading) return
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
-            console.log("####: " + "feed detected!");
             this.loadMore()
         }
     }
@@ -28,8 +27,6 @@ export default class extends Controller {
         const response = await fetch(`${this.urlValue}?page=${nextPage}`, {
             headers: { "Accept": "text/vnd.turbo-stream.html" }
         })
-
-        console.log("####: feed" + `${this.urlValue}?page=${nextPage}`);
 
         if (response.ok) {
             const html = await response.text()
