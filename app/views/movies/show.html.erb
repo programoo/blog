@@ -48,8 +48,10 @@
     <div class="card-footer bg-white" id="social-panel-list-<%= @movie.id %>">
       <%= render "shared/actions_panel", movie: @movie %>
     </div>
-    <div id="comment-list-<%= @movie.id %>">
-      <%= render "shared/comments", movie: @movie %>
-    </div>
+    <% if current_user.present? %>
+      <div id="comment-list-<%= @movie.id %>">
+        <%= render "shared/comments", movie: @movie %>
+      </div>
+    <% end %>
   </div>
 </div>
