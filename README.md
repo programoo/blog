@@ -70,3 +70,6 @@ VISUAL="code --wait" bin/rails credentials:edit
 bin/rails credentials:show
 
 journalctl -u nginx -f
+
+# restart server
+sudo systemctl restart puma
