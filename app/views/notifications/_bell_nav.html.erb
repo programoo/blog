@@ -15,7 +15,9 @@
   >
     <p>Notifications</p>
     <% @notifications = Notification.where(user: current_user).order(created_at: :desc).limit(10) %>
-    <%= render @notifications %>
+    <% @notifications.each do |noti| %>
+      <%= render "notifications/notification", notification: noti%>
+    <% end %>
   </div>
   <!-- Notification count -->
   <%= render "notifications/count", user: current_user %>
