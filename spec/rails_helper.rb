@@ -34,7 +34,13 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+require 'devise'
 RSpec.configure do |config|
+  # Devise test helpers for controller/request specs
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::ControllerHelpers, type: :controller
+
   config.include FactoryBot::Syntax::Methods
 
   # Clean DB between tests
