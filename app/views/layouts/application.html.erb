@@ -39,9 +39,9 @@
             <a class="navbar-brand" href="<%= root_path %>">Home</a>
           <% end %>
           <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
-          <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
           <div class="ms-auto d-flex gap-3">
             <% if current_user.present? %>
+              <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
               <%= turbo_stream_from "notifications_#{current_user.id}" %>
               <%= render "notifications/bell_nav" %>
               <div class="nav-item dropdown">
