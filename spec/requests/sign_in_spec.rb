@@ -16,4 +16,9 @@ RSpec.describe "Feeds", type: :request do
     get "/admin/movies"
     expect(response).to have_http_status(:ok)
   end
+
+   it "allows access to profile" do
+    get "/users/#{user.id}"
+    expect(response).to have_http_status(:ok)
+  end
 end
