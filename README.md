@@ -73,3 +73,5 @@ journalctl -u nginx -f
 
 # restart server
 sudo systemctl restart puma
+
+ssh ubuntu@ec2-13-251-124-217.ap-southeast-1.compute.amazonaws.com "sudo systemctl restart puma"
