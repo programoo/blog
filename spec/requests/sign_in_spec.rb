@@ -11,4 +11,9 @@ RSpec.describe "Feeds", type: :request do
     get "/feeds"
     expect(response).to have_http_status(:ok)
   end
+
+  it "allows access to /admin/movies" do
+    get "/admin/movies"
+    expect(response).to have_http_status(:ok)
+  end
 end
