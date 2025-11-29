@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="border border-danger rounded-3 p-3 mb-3 bg-light">
+    <h6 class="text-danger fw-bold mb-2">Please fix the following errors:</h6>
+    <ul class="mb-0 ps-3">
+      <% resource.errors.full_messages.each do |msg| %>
+        <li class="text-danger"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

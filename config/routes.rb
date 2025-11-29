@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   end
   #user authen, sign up feature
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: "users/registrations"
   }
 
   #user profile feature
