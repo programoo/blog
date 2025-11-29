@@ -66,6 +66,8 @@
           </div>
         </div>
       </nav>
+      <!-- sign in uses flash -->
+      <%= render "layouts/closable_flash", flash: flash%>
       <%= yield %>
     </div>
     <% if controller_name == "pages" %>

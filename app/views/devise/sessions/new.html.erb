@@ -1,8 +1,9 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-4">
-      <h2 class="text-center mb-4">Log in</h2>
-      <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), local: true) do |f| %>
+      <h2 class="text-center mb-4">Log in ja</h2>
+      <%= render "devise/shared/error", resouce: resource %>
+      <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), local: true,data: { turbo: false }) do |f| %>
         <div class="mb-3">
           <%= f.label :email, class: "form-label" %>
           <%= f.email_field :email, autofocus: true, class: "form-control" %>

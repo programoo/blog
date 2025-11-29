@@ -3,7 +3,7 @@
     <div class="col-md-5">
       <div class="card shadow-sm p-4">
         <h2 class="text-center mb-4">Sign Up</h2>
-        <%= render "devise/registrations/error", resouce: resource%>
+        <%= render "devise/shared/error", resouce: resource%>
         <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true,data: { turbo: false }) do |f| %>
           <div class="mb-3">
             <%= f.label :email, class: "form-label" %>
