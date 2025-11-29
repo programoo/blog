@@ -2,33 +2,33 @@
   <div class="row justify-content-center">
     <div class="col-md-5">
       <div class="card shadow-sm p-4">
-        <h2 class="text-center mb-4">Sign Up</h2>
-        <%= render "devise/shared/error", resouce: resource%>
-        <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true,data: { turbo: false }) do |f| %>
+        <h2 class="text-center mb-4">สมัครสมาชิก</h2>
+        <%= render "devise/shared/error", resouce: resource %>
+        <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), local: true, data: { turbo: false }) do |f| %>
           <div class="mb-3">
-            <%= f.label :email, class: "form-label" %>
+            <%= f.label :email, "อีเมล", class: "form-label" %>
             <%= f.email_field :email, autofocus: true, class: "form-control" %>
           </div>
           <div class="mb-3">
-            <%= f.label :first_name, class: "form-label" %><br />
+            <%= f.label :first_name, "ชื่อ", class: "form-label" %><br />
             <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", class: "form-control" %>
           </div>
           <div class="mb-3">
-            <%= f.label :last_name, class: "form-label" %><br />
+            <%= f.label :last_name, "นามสกุล", class: "form-label" %><br />
             <%= f.text_field :last_name, autocomplete: "family-name", class: "form-control" %>
           </div>
           <div class="mb-3">
-            <%= f.label :password, class: "form-label" %>
+            <%= f.label :password, "รหัสผ่าน", class: "form-label" %>
             <% if @minimum_password_length %>
-              <small class="text-muted">(minimum <%= @minimum_password_length %> characters)</small>
+              <small class="text-muted">(อย่างน้อย <%= @minimum_password_length %> ตัวอักษร)</small>
             <% end %>
             <%= f.password_field :password, class: "form-control" %>
           </div>
           <div class="mb-3">
-            <%= f.label :password_confirmation, class: "form-label" %>
+            <%= f.label :password_confirmation, "ยืนยันรหัสผ่าน", class: "form-label" %>
             <%= f.password_field :password_confirmation, class: "form-control" %>
           </div>
-          <%= f.submit "Create Account", class: "btn btn-primary w-100" %>
+          <%= f.submit "สร้างบัญชี", class: "btn btn-primary w-100" %>
         <% end %>
         <div class="text-center mt-3">
           <%= render "devise/shared/links" %>

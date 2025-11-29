@@ -1,25 +1,25 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
-    <h2 class="text-center mb-4">Change your password</h2>
+    <h2 class="text-center mb-4">เปลี่ยนรหัสผ่านของคุณ</h2>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <%= f.hidden_field :reset_password_token %>
       <div class="mb-3">
-        <%= f.label :password, "New password", class: "form-label" %>
+        <%= f.label :password, "รหัสผ่านใหม่", class: "form-label" %>
         <% if @minimum_password_length %>
-          <small class="text-muted d-block mb-1">(<%= @minimum_password_length %> characters minimum)</small>
+          <small class="text-muted d-block mb-1">(อย่างน้อย <%= @minimum_password_length %> ตัวอักษร)</small>
         <% end %>
-        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "Enter new password" %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "กรอกรหัสผ่านใหม่" %>
       </div>
       <div class="mb-3">
-        <%= f.label :password_confirmation, "Confirm new password", class: "form-label" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm new password" %>
+        <%= f.label :password_confirmation, "ยืนยันรหัสผ่านใหม่", class: "form-label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "ยืนยันรหัสผ่านใหม่" %>
       </div>
       <div class="d-grid">
-        <%= f.submit "Change my password", class: "btn btn-primary" %>
+        <%= f.submit "เปลี่ยนรหัสผ่านของฉัน", class: "btn btn-primary" %>
       </div>
       <div class="mt-3 text-center">
-        <%= link_to "Back to login", new_session_path(resource_name), class: "text-decoration-none" %>
+        <%= link_to "กลับไปหน้าเข้าสู่ระบบ", new_session_path(resource_name), class: "text-decoration-none" %>
       </div>
     <% end %>
   </div>
