@@ -75,3 +75,12 @@ journalctl -u nginx -f
 sudo systemctl restart puma
 
 ssh ubuntu@ec2-13-251-124-217.ap-southeast-1.compute.amazonaws.com "sudo systemctl restart puma"
+
+# database
+psql -h 127.0.0.1 -U tofubear -d postgres -W
+# connect to blog_production.
+\c blog_production
+# list all tables;
+\dt
+# select all data in users table
+ SELECT * from "users";
