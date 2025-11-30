@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
     <h2 class="text-center mb-4">ลืมรหัสผ่าน?</h2>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: { turbo: false }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="mb-3">
         <%= f.label :email, "อีเมล", class: "form-label" %>
