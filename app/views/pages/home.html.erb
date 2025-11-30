@@ -2,24 +2,24 @@
 <section class="bg-dark py-5 text-center text-white">
   <div class="container">
     <% if !user_signed_in? %>
-      <h2 class="display-4 fw-bold mb-3">ค้นพบรีวิวภาพยนตร์ที่ดีที่สุดเพื่อน้องปิ๊ก3</h2>
+      <h2 class="display-4 fw-bold mb-3">เริ่มต้นโลกการเขียนของคุณกับ WriterHub</h2>
     <% else %>
       <h2 class="display-4 fw-bold mb-3">สวัสดี <%= "#{current_user.get_display_name}"%></h2>
     <% end %>
     <p class="text-secondary mb-4 fs-5">
-      คู่มือแนะนำภาพยนตร์สำหรับคุณ — ตั้งแต่หนังฟอร์มยักษ์ล่าสุด ไปจนถึงหนังดีที่หลายคนอาจมองข้าม และตำนานแห่งโลกภาพยนตร์ที่ไม่มีวันเก่า
+      พื้นที่สำหรับนักเขียนทุกระดับ — รวบรวมบทความ เรื่องสั้น นิยาย และสาระสร้างแรงบันดาลใจ พร้อมระบบติดตามผลงานและชุมชนนักเขียนคุณภาพ
     </p>
     <% if !user_signed_in? %>
-      <a href="<%= new_registration_path(:user) %>" class="btn btn-danger btn-lg rounded-pill">สมัครเลย</a>
+      <a href="<%= new_registration_path(:user) %>" class="btn btn-danger btn-lg rounded-pill">เริ่มเขียนเลย</a>
     <% end %>
   </div>
 </section>
-<!-- Top Movies Section -->
-<section id="top-movies" class="py-5 bg-secondary text-white">
+<!-- Top Movies Section (เปลี่ยนเป็นผลงานเด่น) -->
+<section id="top-works" class="py-5 bg-secondary text-white">
   <div class="container text-center mb-4">
-    <h3 class="display-5 fw-bold mb-3">ภาพยนตร์ยอดนิยมแห่งปี</h3>
+    <h3 class="display-5 fw-bold mb-3">ผลงานเด่นประจำปี</h3>
     <p class="text-light mx-auto" style="max-width: 600px;">
-      ชมรายชื่อภาพยนตร์ที่ได้คะแนนสูงสุดจากทั้งรีวิวของผู้เชี่ยวชาญและเสียงโหวตจากชุมชนของเรา.
+      รวบรวมผลงานที่ได้รับความนิยมสูงสุดจากชุมชนนักเขียนและผู้อ่านในปีนี้
     </p>
   </div>
   <div class="container">
@@ -31,12 +31,12 @@
               <div class="overflow-hidden">
                 <% if movie.images.attached? && movie.images.first.present? %>
                   <%= image_tag Rails.application.routes.url_helpers.rails_blob_url(movie.images.first, only_path: true),
-                alt: movie.title,
-                class: "card-img-top img-fluid transition-transform hover-scale" %>
+                    alt: movie.title,
+                    class: "card-img-top img-fluid transition-transform hover-scale" %>
                 <% else %>
                   <%= image_tag "placeholder.png",
-                alt: movie.title,
-                class: "card-img-top img-fluid transition-transform hover-scale" %>
+                    alt: movie.title,
+                    class: "card-img-top img-fluid transition-transform hover-scale" %>
                 <% end %>
               </div>
               <div class="card-body">
@@ -50,15 +50,15 @@
     </div>
   </div>
   <div class="container text-end mt-3">
-    <%= link_to "รีวิวภาพยนต์ทั้งหมด >>>", movies_path, class: "text-decoration-none text-warning fw-bold" %>
+    <%= link_to "อ่านผลงานทั้งหมด >>>", movies_path, class: "text-decoration-none text-warning fw-bold" %>
   </div>
 </section>
-<!-- Latest Reviews Section -->
+<!-- Latest Reviews Section (เปลี่ยนเป็นความคิดเห็น/รีวิวผลงานล่าสุด) -->
 <section id="reviews" class="py-5 bg-dark text-white">
   <div class="container text-center mb-4">
-    <h3 class="display-5 fw-bold mb-3">รีวิวล่าสุด</h3>
+    <h3 class="display-5 fw-bold mb-3">ความคิดเห็นล่าสุดจากผู้อ่าน</h3>
     <p class="text-light mx-auto" style="max-width: 600px;">
-      อ่านรีวิวล่าสุดจากนักวิจารณ์และคนรักหนังของเรา
+      มาดูว่าผู้อ่านพูดอะไรเกี่ยวกับผลงานต่าง ๆ ใน WriterHub
     </p>
   </div>
   <div class="container">
