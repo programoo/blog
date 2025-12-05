@@ -27,64 +27,10 @@
   </head>
   <body class="bg-light">
     <div class="container-fluid" style="padding: 0;">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <% if !current_user %>
-            <a class="navbar-brand" href="<%= root_path %>">Home</a>
-          <% end %>
-          <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
-          <div class="ms-auto d-flex gap-3">
-            <% if current_user.present? %>
-              <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
-              <%= turbo_stream_from "notifications_#{current_user.id}" %>
-              <%= render "notifications/bell_nav" %>
-              <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <%= image_tag(
-                      if current_user.avatar.attached?
-                      current_user.avatar.variant(resize_to_fill: [40, 40])
-                      else
-                      "placeholder.png" # put your default image in app/assets/images
-                      end,
-                      class: "rounded-circle",
-                      width: 40,
-                      height: 40,
-                      alt: "User Avatar"
-                  ) %>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
-                  <li><a class="dropdown-item" href="<%= user_path(current_user) %>">Profile</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li>
-                    <%= button_to "ออกจากระบบ", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-                  </li>
-                </ul>
-              </div>
-            <% else %>
-              <a class="navbar-brand" href="<%= user_session_path %>">เข้าสู่ระบบ</a>
-            <% end %>
-          </div>
-        </div>
-      </nav>
-      <!-- sign in uses flash -->
+      <%= render "layouts/topbar" %>
       <%= render "layouts/closable_flash", flash: flash%>
-      <div class="row">
-        <div class="bg-white p-0 position-fixed top-20 start-0 h-100" style="width: 200px; margin-top: 60px">
-          <div class="list-group">
-            <%= link_to feeds_path,
-      class: "list-group-item list-group-item-action border-0 rounded-0 fw-bold d-flex align-items-center gap-2
-              #{ controller_name == 'feeds' ? 'active bg-body-secondary text-dark' : '' }" do %>
-              <i class="bi bi-collection fs-5"></i>
-              <span class="d-none d-md-inline">Feeds</span>
-            <% end %>
-            <%= link_to movies_path,
-      class: "list-group-item list-group-item-action border-0 rounded-0 fw-bold d-flex align-items-center gap-2
-              #{ controller_name == 'movies' ? 'active bg-body-secondary text-dark' : '' }" do %>
-              <i class="bi bi-film fs-5"></i>
-              <span class="d-none d-md-inline">Movies</span>
-            <% end %>
-          </div>
-        </div>
+      <div class="row" style="margin-top: 50px">
+        <%= render "layouts/sidebar" %>
         <div class="col-10" style="margin-left: 200px;"><%= yield %></div>
       </div>
     </div>

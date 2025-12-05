@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <% if !current_user %>
+      <a class="navbar-brand" href="<%= root_path %>">Home</a>
+    <% end %>
+    <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
+    <div class="ms-auto d-flex gap-3">
+      <% if current_user.present? %>
+        <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>
+        <%= turbo_stream_from "notifications_#{current_user.id}" %>
+        <%= render "notifications/bell_nav" %>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="settingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= image_tag(
+                      if current_user.avatar.attached?
+                      current_user.avatar.variant(resize_to_fill: [40, 40])
+                      else
+                      "placeholder.png" # put your default image in app/assets/images
+                      end,
+                      class: "rounded-circle",
+                      width: 40,
+                      height: 40,
+                      alt: "User Avatar"
+                  ) %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+            <li><a class="dropdown-item" href="<%= user_path(current_user) %>">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <%= button_to "ออกจากระบบ", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <a class="navbar-brand" href="<%= user_session_path %>">เข้าสู่ระบบ</a>
+      <% end %>
+    </div>
+  </div>
+</nav>
