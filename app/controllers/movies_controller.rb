@@ -34,6 +34,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    puts "Wil this call edit"
   end
 
   def create
