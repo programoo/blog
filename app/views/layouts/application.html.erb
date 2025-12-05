@@ -1,30 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "PopcornThai - หนังจบคนไม่จบ" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="turbo-visit-control" content="reload">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <!-- Bootstrap CSS via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-    <!-- Include Bootstrap Icons CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <%= yield :head %>
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-    <link rel="icon" href="/popcornpx_favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/popcornpx_favicon.png">
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "pagy", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "flash_message", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= render "layouts/head" %>
   <body class="bg-light">
     <div class="container-fluid" style="padding: 0;">
       <%= render "layouts/topbar" %>
