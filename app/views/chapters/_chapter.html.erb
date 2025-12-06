@@ -1,27 +1,9 @@
-<div id="<%= dom_id chapter %>">
-  <p>
-    <strong>Title:</strong>
-    <%= chapter.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= chapter.description %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= chapter.content %>
-  </p>
-
-  <p>
-    <strong>Position:</strong>
-    <%= chapter.position %>
-  </p>
-
-  <p>
-    <strong>Movie:</strong>
-    <%= chapter.movie_id %>
-  </p>
-
+<div id="<%= dom_id chapter %>" class="card mb-1 shadow-sm">
+  <div class="row card-body">
+    <div class="col-1"># <%= chapter.position %></div>
+    <h5 class="col-9 card-title mb-3 d-inline-block"><%= chapter.title %></h5>
+    <div class="col-2">
+      <%= link_to "แก้ไข", edit_movie_chapter_path(chapter.movie, chapter) %>
+    </div>
+  </div>
 </div>

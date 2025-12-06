@@ -2,7 +2,7 @@ class ChaptersController < ApplicationController
   before_action :set_chapter, only: %i[ show edit update destroy ]
 
   def index
-    @chapters = Chapter.all
+    @chapters = Movie.find(params[:movie_id]).chapters
   end
 
   def show
@@ -34,7 +34,7 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to @chapter, notice: "Chapter was successfully updated.", status: :see_other }
+        format.html { redirect_to movie_chapters_path(params[:movie_id]), notice: "Chapter was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit, status: :unprocessable_entity }

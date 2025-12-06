@@ -1,12 +1,9 @@
-<p style="color: green"><%= notice %></p>
-<% content_for :title, "Chapters" %>
-<h1>Chapters</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">จัดการตอน</h1>
+  <%= link_to "New chapter", new_movie_chapter_path(params[:movie_id]), class: "btn btn-success" %>
+</div>
 <div id="chapters">
   <% @chapters.each do |chapter| %>
     <%= render chapter %>
-    <p>
-      <%= link_to "Show this chapter", chapter %>
-    </p>
   <% end %>
 </div>
-<%= link_to "New chapter", new_movie_chapter_path(params[:movie_id]) %>

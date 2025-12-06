@@ -27,7 +27,8 @@
     <%= form.label :content, style: "display: block" %>
     <%= form.textarea :content %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="d-flex gap-2">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Back to chapters", "#", class: "btn btn-secondary", onclick: "history.back(); return false;" %>
   </div>
 <% end %>
