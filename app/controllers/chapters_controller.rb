@@ -1,31 +1,28 @@
 class ChaptersController < ApplicationController
   before_action :set_chapter, only: %i[ show edit update destroy ]
 
-  # GET /chapters or /chapters.json
   def index
     @chapters = Chapter.all
   end
 
-  # GET /chapters/1 or /chapters/1.json
   def show
   end
 
-  # GET /chapters/new
   def new
     @chapter = Chapter.new
+    @chapter.position = Movie.find(params[:movie_id]).chapters.try(:size) + 1
   end
 
-  # GET /chapters/1/edit
   def edit
   end
 
-  # POST /chapters or /chapters.json
   def create
     @chapter = Chapter.new(chapter_params)
-
+    @chapter.movie_id = params[:movie_id]
+    
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to @chapter, notice: "Chapter was successfully created." }
+        format.html { redirect_to movie_chapters_path(params[:movie_id]), notice: "Chapter was successfully created." }
         format.json { render :show, status: :created, location: @chapter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +31,6 @@ class ChaptersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /chapters/1 or /chapters/1.json
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)

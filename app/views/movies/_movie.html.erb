@@ -26,7 +26,7 @@
               <%= link_to "แก้ไขข้อมูลเรื่อง", edit_movie_path(movie), class: "dropdown-item", data: { turbo: false } %>
             </li>
             <li>
-              <%= link_to "จัดการตอน", edit_movie_path(movie), class: "dropdown-item", data: { turbo: false } %>
+              <%= link_to "จัดการตอน", movie_chapters_path(movie), class: "dropdown-item", data: { turbo: false } %>
             </li>
             <li>
               <%= link_to "ลบ", movie_path(movie),

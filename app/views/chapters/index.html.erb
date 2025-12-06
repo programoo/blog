@@ -1,9 +1,6 @@
 <p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Chapters" %>
-
 <h1>Chapters</h1>
-
 <div id="chapters">
   <% @chapters.each do |chapter| %>
     <%= render chapter %>
@@ -12,5 +9,4 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New chapter", new_chapter_path %>
+<%= link_to "New chapter", new_movie_chapter_path(params[:movie_id]) %>

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :movies do
     resources :comments, only: [:create, :destroy, :index]
+    resources :chapters
   end
 
   namespace :admin do

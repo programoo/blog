@@ -4,6 +4,7 @@ class Movie < ApplicationRecord
     has_one :movie_metric
     has_many :liking_users, through: :user_likes, source: :user
     has_rich_text :content
+    has_many :chapters
 
     has_many :ratings, dependent: :destroy
 
