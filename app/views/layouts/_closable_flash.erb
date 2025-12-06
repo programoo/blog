@@ -1,7 +1,8 @@
 <% flash.each do |key, value| %>
-  <div class="alert alert-<%= key == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show mt-5" 
+  <div class="alert alert-<%= key == 'alert' ? 'danger' : 'success' %> alert-dismissible fade show fixed-top" 
     role="alert"
     data-controller="alert"
+    style="z-index: 1100;width: 50%;margin: auto;"
   >
     <%= value %>
     <button 
