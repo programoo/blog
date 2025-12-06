@@ -1,16 +1,10 @@
-<div class="bg-white p-0 position-fixed top-20 start-0 h-100" style="width: 200px; margin-top: 60px">
+<div class="bg-white p-0 position-fixed top-20 start-0 h-100" style="width: 200px; margin-top: 10px">
   <div class="list-group">
-    <%= link_to feeds_path,
-      class: "list-group-item list-group-item-action border-0 rounded-0 fw-bold d-flex align-items-center gap-2
-              #{ controller_name == 'feeds' ? 'active bg-body-secondary text-dark' : '' }" do %>
-      <i class="bi bi-collection fs-5"></i>
-      <span class="d-none d-md-inline">Feeds</span>
-    <% end %>
     <%= link_to movies_path,
       class: "list-group-item list-group-item-action border-0 rounded-0 fw-bold d-flex align-items-center gap-2
               #{ controller_name == 'movies' ? 'active bg-body-secondary text-dark' : '' }" do %>
       <i class="bi bi-film fs-5"></i>
-      <span class="d-none d-md-inline">Movies</span>
+      <span class="d-none d-md-inline">จัดการงานเขียน</span>
     <% end %>
   </div>
 </div>

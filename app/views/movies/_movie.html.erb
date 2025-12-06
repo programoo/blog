@@ -1,17 +1,43 @@
-<div class="col">
-  <div class="card h-100 shadow-sm">
-    <% if movie.images.attached? %>
-      <%= image_tag movie.images.first&.variant(resize_to_fill: [150, 150]), class: "card-img-top", alt: movie.title %>
-    <% else %>
-      <%= image_tag "placeholder.png", class: "card-img-top", alt: "No thumbnail", size: "#{304}x#{304}" %>
-    <% end %>
-    <div class="card-body d-flex flex-column">
-      <h5 class="card-title"><%= movie.title %></h5>
-      <p class="card-text text-truncate"><%= movie.description %></p>
-      <%= link_to "ดูรีวิว", movie_path(movie), class: "btn btn-success mt-auto",data: { turbo: false } %>
-    </div>
-    <div class="card-footer bg-white">
-      <%= render "shared/social_panel", movie: movie %>
+<div class="row">
+  <div class="card p-2 m-2">
+    <div class="row g-3 align-items-center">
+      <!-- Image Left -->
+      <div class="col-1">
+        <% if movie.images.attached? %>
+          <%= image_tag movie.images.first&.variant(resize_to_fill: [100, 100]),
+              class: "img-fluid rounded", alt: movie.title %>
+        <% else %>
+          <%= image_tag "placeholder.png",
+              class: "img-fluid rounded", alt: "No thumbnail", size: "100x100" %>
+        <% end %>
+      </div>
+      <!-- Info Right -->
+      <div class="col-9">
+        <h5 class="mb-1"><%= movie.title %></h5>
+        <p class="text-truncate mb-2"><%= movie.description %></p>
+      </div>
+      <div class="col-2 ">
+        <div class="dropdown">
+          <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Actions
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to "แก้ไขข้อมูลเรื่อง", edit_movie_path(movie), class: "dropdown-item", data: { turbo: false } %>
+            </li>
+            <li>
+              <%= link_to "จัดการตอน", edit_movie_path(movie), class: "dropdown-item", data: { turbo: false } %>
+            </li>
+            <li>
+              <%= link_to "ลบ", movie_path(movie),
+        method: :delete,
+        data: { confirm: "ลบหนังเรื่องนี้?",
+                turbo: false },
+        class: "dropdown-item text-danger" %>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>

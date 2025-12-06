@@ -3,7 +3,11 @@
     <% if !current_user %>
       <a class="navbar-brand" href="<%= root_path %>">Home</a>
     <% end %>
-    <a class="navbar-brand" href="<%= feeds_path %>">Feed</a>
+    <%= link_to movies_path,
+      class: "navbar-brand" do %>
+      <i class="bi bi-pencil-square fs-5"></i>
+      <span class="d-none d-md-inline">จัดการงานเขียน</span>
+    <% end %>
     <div class="ms-auto d-flex gap-3">
       <% if current_user.present? %>
         <a class="navbar-brand" href="<%= admin_movies_path %>">Movies</a>

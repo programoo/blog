@@ -43,7 +43,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       if @movie.save
         MovieMetric.find_or_create_by(movie_id: @movie.id)
-        format.html { redirect_to admin_movies_path, notice: "Movie was successfully created." }
+        format.html { redirect_to movies_path, notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -69,7 +69,7 @@ class MoviesController < ApplicationController
     
     respond_to do |format|
       if @movie.update(movie_params_without_image)
-        format.html { redirect_to admin_movies_path, notice: "Movie was successfully updated." }
+        format.html { redirect_to movies_path, notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit, status: :unprocessable_entity }

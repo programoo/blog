@@ -5,12 +5,8 @@
     <div class="container-fluid" style="padding: 0;">
       <%= render "layouts/topbar" %>
       <%= render "layouts/closable_flash", flash: flash%>
-      <div class="row" style="margin-top: 50px">
-        <% if current_user.present? %>
-          <div class="col-12" ><%= yield %></div>
-        <% else %>
-          <%= yield %>
-        <% end %>
+      <div class="row">
+        <%= yield %>
       </div>
     </div>
     <% if controller_name == "pages" %>
@@ -20,6 +16,6 @@
         </div>
       </footer>
     <% end %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <%= render "layouts/tail" %>
   </body>
 </html>
